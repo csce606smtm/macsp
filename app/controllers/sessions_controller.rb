@@ -6,8 +6,14 @@ class SessionsController < ApplicationController
 
   def create
     if login(params[:email], params[:password], params[:remember_me])
-      flash[:success] = 'Welcome back!'
-      redirect_back_or_to log_in_path
+      logger.debug("test: #{@current_user.class}")
+      if @current_user.admin == 1
+        flash[:success] = 'Welcome! Admin'
+        redirect_to admin_path
+      else
+        flash[:success] = 'Welcome a Judge'
+        redirect_to judge_path
+      end
     else
       flash.now[:warning] = 'E-mail and/or password is incorrect.'
       render 'new'

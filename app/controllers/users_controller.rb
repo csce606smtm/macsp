@@ -8,16 +8,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      login(params[:user][:email], params[:user][:password])
       flash[:notice] = @isAdmin #for testing
       if params[:user][:admin] == "1"
+        login(params[:user][:email], params[:user][:password])
         flash[:success] = 'Welcome! Admin'
-        redirect_to root_path
       else
-        flash[:success] = 'Welcome! Judge'
-        redirect_to judge_path
+        flash[:success] = 'Successfully created a Judge'
       end
-      
+      redirect_to root_path 
     else
       render 'new'
     end

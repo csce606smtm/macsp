@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   get 'judge' => 'judge#index'
+  get 'admin' => 'admin#index'
+  get 'users' => 'users#new'
   get '/sign_up', to: 'users#new', as: :sign_up
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out

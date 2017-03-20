@@ -12,7 +12,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'sqlite3'
+  gem 'web-console', '~> 2.0'
 end
 
 group :production do
@@ -54,10 +54,21 @@ gem 'sorcery'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '3.3.2'
+  gem 'sqlite3'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+group :test do
+   gem 'cucumber-rails', :require => false
+   gem 'cucumber-rails-training-wheels' # some prefabbed step definition
+   gem 'database_cleaner' # to clean cucumbers test database between runs
+   gem 'capybara' # lets cucumber pretend to be a web browser
+   gem 'launchy' # a useful debuggin aid for user stories
+   gem 'simplecov', :require => false
+end 
