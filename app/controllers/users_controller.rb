@@ -12,10 +12,11 @@ class UsersController < ApplicationController
       if params[:user][:admin] == "1"
         login(params[:user][:email], params[:user][:password])
         flash[:success] = 'Welcome! Admin'
+        redirect_to admin_path 
       else
         flash[:success] = 'Successfully created a Judge'
+        redirect_to judge_path 
       end
-      redirect_to root_path 
     else
       render 'new'
     end
