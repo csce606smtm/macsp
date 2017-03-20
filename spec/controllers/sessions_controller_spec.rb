@@ -3,8 +3,9 @@ require 'spec_helper.rb'
 describe SessionsController, :type => :controller do
     it "creates users" do
       fakeUser = User.create
-      get :index
-      expect(create(:books)).to eq([fakeUser])
+      post :create
+      
+      expect(flash[:notice]).to match('Welcome! Admin')
     end
 #   context 'when password is invalid' do
 #     it 'renders the page with error' do
