@@ -19,6 +19,7 @@
         <% if current_user %>
            <% if current_user.admin == 1 || current_user.admin == true %>
              <li><%= link_to 'Secret Page', secret_path %></li>
+             <li><%= link_to 'Admin Page', admin_path %></li>
              <li><%= link_to 'Sign Up', sign_up_path %></li>
            <% else %>
              <li><%= link_to 'Judge Page', judge_path%></li>
