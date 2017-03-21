@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         flash[:success] += 'Welcome! Admin'
         redirect_to admin_path
       else
-        flash[:success] = 'Welcome a Judge'
+        flash[:success] += 'Welcome a Judge'
         redirect_to judge_path
       end
     else
