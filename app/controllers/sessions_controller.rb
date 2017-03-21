@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 
   def create
     if login(params[:email], params[:password], params[:remember_me])
-      logger.debug("test: #{current_user.class}")
+      flash[:success] = "#{current_user.class}, #{current_user.admin}, "
       if current_user.admin == 1
-        flash[:success] = 'Welcome! Admin'
+        flash[:success] += 'Welcome! Admin'
         redirect_to admin_path
       else
         flash[:success] = 'Welcome a Judge'
