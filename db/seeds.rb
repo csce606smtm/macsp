@@ -7,18 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 users = [
-    {:email => 'admin555@gmail.com',
+    {:email => 'admin@gmail.com',
      :password => '123',
      :name => 'Lance',
      :admin =>"1"}, 
-    
-    {:email => 'judge555@gmail.com',
-     :password => '123',
-     :name => 'Lance',
-     :admin => "0"}, 
     ]
-
-     #:password_confirmation => '123',
 
 users.each do |user|
     u = User.new(user)
