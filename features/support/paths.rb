@@ -29,12 +29,14 @@ module NavigationHelpers
         path_components = $1.split(/\s+/)
         final_path = path_components.push('path').join('_').to_s
         
-        case final_path
-        when "admin_path"
-          users_path
-        else
-          self.send(final_path)
-        end
+        # case final_path
+        # when "admin_path"
+        #   users_path
+        # else
+        #   self.send(final_path)
+        # end
+        
+        self.send(final_path)
         
       rescue NoMethodError, ArgumentError
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
