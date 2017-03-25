@@ -54,7 +54,7 @@ gem 'sorcery'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails', '3.3.2'
+  gem 'rspec-rails', '3.4.2'
   gem 'sqlite3'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
