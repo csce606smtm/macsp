@@ -12,11 +12,9 @@ Rails.application.routes.draw do
   get 'judge' => 'judge#index'
   get 'admin' => 'admin#index'
   get 'users' => 'users#new'
-  get '/sign_up', to: 'users#new', as: :sign_up
+  get '/setup', to: 'admin#setup', as: :setup
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
-
-  get '/secret', to: 'pages#index', as: :secret
 
   root to: 'pages#index'
 
