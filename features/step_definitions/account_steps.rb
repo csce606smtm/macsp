@@ -29,9 +29,6 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
-
-    if false
-
 	split_text = text.split("\s")
 	
 	if split_text.length > 1
@@ -42,8 +39,6 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
 		else
     		assert page.has_content?(text)
 		end
-	end
-	
 	end
 end
 
@@ -56,9 +51,6 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
 end
 
 Then /^(?:|I )should be on (.+)$/ do |page_name|
-    
-  if false
-      
   current_path = URI.parse(current_url).path
   
   puts path_to(page_name)
@@ -68,7 +60,5 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
     current_path.should == path_to(page_name)
   else
     assert_equal path_to(page_name), current_path
-  end
-  
   end
 end

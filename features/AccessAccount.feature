@@ -3,6 +3,14 @@ Feature: access an user account
   As an/a admin/judge user
   I want to sign in with my admin/judge account
 
+Background: users in database
+
+  Given the following users exist:
+  | email              | password     | password_confirmation    | name          | admin   |
+  | admin@gmail.com    | 123          | 123                      | Lance         | 1       |
+  | danguria@gmail.com | 123456789    | 123456789                | Sungkeun Kim  | 1       |
+  | tjeon90@gmail.com  | 1234567      | 1234567                  | Tae Jun Jeon  | 0       |
+
 Scenario: access an admin account
   Given I am on the home page
   And  I fill in "Email" with "danguria@gmail.com"
