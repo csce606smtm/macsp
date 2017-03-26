@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#index'
   get 'users' => 'users#new'
   get '/setup', to: 'admin#setup', as: :setup
+  get '/setup_judge', to: 'admin#judge', as: :setup_judge
+  get '/setup_auctioneer', to: 'admin#auctioneer', as: :setup_auctioneer
+  
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
 

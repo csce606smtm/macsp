@@ -1,0 +1,36 @@
+<li><%= link_to 'Judge', setup_judge_path %></li>
+
+<%= form_for @user do |f| %>
+  <%= render 'shared/errors', object: @user %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control', required: true %>
+  </div>
+  
+  <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>
+<% end %>
+
+<div class="container">
+  <h2>Current Auctioneer</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Score Sheet</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @member.each do |value|%>
+      <tr>
+        <td><%= value.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

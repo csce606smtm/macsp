@@ -1,0 +1,54 @@
+<li><%= link_to 'Auctioneer', setup_auctioneer_path %></li>
+
+<%= form_for @user do |f| %>
+  <%= render 'shared/errors', object: @user %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
+  </div>
+  <div class="field form-group">
+    <div class="checkbox-inline">
+      <%= f.check_box :admin %>
+      <%= f.label :admin, "Admin Privileges" %><br>
+    </div>
+  </div>
+  <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>
+<% end %>
+
+<div class="container">
+  <h2>Current Judges</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Score Sheet</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @member.each do |value|%>
+      <tr>
+        <td><%= value.name %></td>
+        <td><%= value.email %></td>
+        <td><%#= value.pw %></td>
+        <td><%#= member.ss %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
