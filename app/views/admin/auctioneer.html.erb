@@ -1,19 +1,73 @@
-<li><%= link_to 'Judge', setup_judge_path %></li>
+<ul class="nav nav-tabs">
+    <li><%= link_to 'Schedule', '#' %></li>
+    <li><%= link_to 'Judge', setup_judge_path %></li>
+    <li class="active"><%= link_to 'Auctioneer', setup_auctioneer_path %></li>
+</ul>
 
-<%= form_for @user do |f| %>
-  <%= render 'shared/errors', object: @user %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control', required: true %>
-  </div>
+<!--<%= form_for @user do |f| %>-->
+<!--  <%= render 'shared/errors', object: @user %>-->
+<!--  <div class="form-group">-->
+<!--    <%= f.label :name %>-->
+<!--    <%= f.text_field :name, class: 'form-control', required: true %>-->
+<!--  </div>-->
 
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control', required: true %>
-  </div>
+<!--  <div class="form-group">-->
+<!--    <%= f.label :password %>-->
+<!--    <%= f.password_field :password, class: 'form-control', required: true %>-->
+<!--  </div>-->
   
-  <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>
-<% end %>
+<!--  <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>-->
+<!--<% end %>-->
+
+<h2>Add Auctioneer</h2>
+
+<form class='form-horizontal'>
+
+  <%= form_for @user do |f| %>
+  <%= render 'shared/errors', object: @user %>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <%= f.label :name %>
+      </label>
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Enter first name', required: true %>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <%= f.label :email %>
+      </label>
+      <div class="col-sm-10">
+        <%= f.email_field :email, class: 'form-control', placeholder: 'Enter last name', required: true %>
+      </div>
+    </div>
+    
+    <div class="form-group">  
+      <label class="control-label col-sm-2">Select class:
+      </label>
+      <div class="col-sm-offset-2 col-sm-10">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="">Rookie
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="">Newbie
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="">Texan
+          </label>
+      </div>
+    </div>
+    
+    <div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit 'Add Auctioneer', class: 'btn btn-primary btn-med' %>
+      </div>
+    </div>
+    
+  <% end %>
+</form>
 
 <div class="container">
   <h2>Current Auctioneer</h2>
@@ -21,6 +75,8 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Class</th>
+        <th>Email</th>
         <th>Score Sheet</th>
       </tr>
     </thead>

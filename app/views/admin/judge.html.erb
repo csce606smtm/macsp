@@ -1,32 +1,72 @@
-<li><%= link_to 'Auctioneer', setup_auctioneer_path %></li>
 
-<%= form_for @user do |f| %>
+<ul class="nav nav-tabs">
+    <li><%= link_to 'Schedule', '#' %></li>
+    <li class="active"><%= link_to 'Judge', setup_judge_path %></li>
+    <li><%= link_to 'Auctioneer', setup_auctioneer_path %></li>
+</ul>
+
+
+
+<h2>Register Judge</h2>
+
+<form class='form-horizontal'>
+
+  <%= form_for @user do |f| %>
   <%= render 'shared/errors', object: @user %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control', required: true %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
-  </div>
-  <div class="field form-group">
-    <div class="checkbox-inline">
-      <%= f.check_box :admin %>
-      <%= f.label :admin, "Admin Privileges" %><br>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <%= f.label :name %>
+      </label>
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>
+      </div>
     </div>
-  </div>
-  <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>
-<% end %>
+  
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <%= f.label :email %>
+      </label>
+      <div class="col-sm-10">
+        <%= f.email_field :email, class: 'form-control', placeholder: 'Enter email', required: true %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2"><%= f.label :password %></label>
+      <div class="col-sm-10"> 
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Enter password', required: true %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <%= f.label :password_confirmation %>
+      </label>
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm password', required: true %>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :admin, type: 'check_box' %>
+            <%= f.label :admin, "Admin Privileges" %>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit 'Register Judge', class: 'btn btn-primary btn-med' %>
+      </div>
+    </div>
+    
+  <% end %>
+</form>
 
 <div class="container">
   <h2>Current Judges</h2>
