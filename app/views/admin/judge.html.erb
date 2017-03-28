@@ -9,10 +9,9 @@
 
 <h2>Register Judge</h2>
 
-<form class='form-horizontal'>
+<%= form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
+<%= render 'shared/errors', object: @user %>
 
-  <%= form_for @user do |f| %>
-  <%= render 'shared/errors', object: @user %>
     
     <div class="form-group">
       <label class="control-label col-sm-2">
@@ -64,9 +63,7 @@
         <%= f.submit 'Register Judge', class: 'btn btn-primary btn-med' %>
       </div>
     </div>
-    
-  <% end %>
-</form>
+<% end %>
 
 <div class="container">
   <h2>Current Judges</h2>
