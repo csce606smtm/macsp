@@ -6,26 +6,31 @@ Feature: access an user account
 Background: users in database
 
   Given the following users exist:
-  | email              | password     | password_confirmation    | name          | admin   |
-  | admin@gmail.com    | 123          | 123                      | Lance         | 1       |
-  | danguria@gmail.com | 123456789    | 123456789                | Sungkeun Kim  | 1       |
-  | tjeon90@gmail.com  | 1234567      | 1234567                  | Tae Jun Jeon  | 0       |
+  | email              | password     | password_confirmation    | name          | user_type  |
+  | danguria@gmail.com | 123456789    | 123456789                | Sungkeun Kim  | Admin      |
+  | tjeon90@gmail.com  | 1234567      | 1234567                  | Tae Jun Jeon  | Judge      |
 
-Scenario: access an admin account
+Scenario: access an admin account and sign out successfully
   Given I am on the home page
   And  I fill in "Email" with "danguria@gmail.com"
   And  I fill in "Password" with "123456789"
   And  I press "Log In"
   Then I should be on the admin page
   And  I should see "Sungkeun Kim"
+  And  I follow "Log Out"
+  Then I should be on the home page
+  And  I should see "See you!"
 
-Scenario: access a judge account
+Scenario: access a judge account and sign out successfully
   Given I am on the home page
   And  I fill in "Email" with "tjeon90@gmail.com"
   And  I fill in "Password" with "1234567"
   And  I press "Log In"
   Then I should be on the judge page
   And  I should see "Tae Jun Jeon"
+  And  I follow "Log Out"
+  Then I should be on the home page
+  And  I should see "See you!"
 
 Scenario: access a judge account (sad path)
   Given I am on the home page
