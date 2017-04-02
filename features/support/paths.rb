@@ -15,7 +15,7 @@ module NavigationHelpers
     case page_name
 
     when /^the home page$/
-      '/'
+      log_in_path
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -1,7 +1,7 @@
-Feature: create a judge account
+Feature: add an auctioneer
 
   As an admin user
-  I want to create a judge account
+  I want to add an auctioneer
 
 Background: users in database
 
@@ -9,16 +9,16 @@ Background: users in database
   | email               | password     | password_confirmation    | name          | user_type    |
   | admin1@gmail.com    | 123          | 123                      | Lance         | Admin        |
 
-Scenario: create a judge account
+Scenario: add an auctioneer
   Given I am on the home page
   And  I fill in "Email" with "admin1@gmail.com"
   And  I fill in "Password" with "123"
   And  I press "Log In"
   And  I follow "Setup"
-  And  I follow "Judge"
-  And  I fill in "Name" with "Donghwa Shin"
-  And  I fill in "Email" with "sdhpekr@gmail.com"
+  And  I follow "Auctioneer"
+  And  I fill in "Name" with "Auction Doe"
+  And  I fill in "Email" with "ebay@gmail.com"
   And  I fill in "Password" with "1231"
   And  I fill in "Password confirmation" with "1231"
-  And  I press "Register"
+  And  I press "Add Auctioneer"
   Then I should be on the admin page
