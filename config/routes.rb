@@ -1,25 +1,29 @@
 Rails.application.routes.draw do
+=begin
   resources :users, only: [:new, :create] do
     member do
       get :activate
     end
   end
+=end
 
   resources :reset_passwords, only: [:new, :create, :update, :edit]
-
   resources :sessions, only: [:new, :create, :destroy]
 
-  get 'judge' => 'judge#index'
-  get 'admin' => 'admin#index'
-  get 'users' => 'users#new'
-  get '/setup', to: 'admin#setup', as: :setup
-  get '/setup_judge', to: 'admin#judge', as: :setup_judge
-  get '/setup_auctioneer', to: 'admin#auctioneer', as: :setup_auctioneer
+  namespace :admin_setup do
+    resources :judge, only: [:index, :new, :create]
+    resources :auctioneer, only: [:index, :new, :create]
+  end
+  get 'admin_setup' => 'admin_setup#setup'
+  
+  resources :admin, only: [:index]
+  resources :judge, only: [:index]
+
   
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
 
-  root to: 'pages#index'
+  root to: 'main#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
