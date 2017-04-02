@@ -8,7 +8,6 @@
 
 
 <h2>Register Judge</h2>
-
 <%= form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
 <%= render 'shared/errors', object: @user %>
 
@@ -47,17 +46,16 @@
       </div>
     </div>
     
-    <div class="form-group">        
+     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
           <label>
-            <%= f.check_box :admin, type: 'check_box' %>
-            <%= f.label :admin, "Admin Privileges" %>
+            <% f.select :user_type, ['Judge'] %>
+            <% f.label :user_type, "User Type" %>
           </label>
-        </div>
       </div>
     </div>
-    
+
+   
     <div class="form-group"> 
       <div class="col-sm-offset-2 col-sm-10">
         <%= f.submit 'Register Judge', class: 'btn btn-primary btn-med' %>

@@ -9,12 +9,12 @@ class AdminController < ApplicationController
   
   def judge
     @user = User.new
-    @member=User.where(admin: "0")
+    @member=User.where(user_type: "Judge")
   end
   
   def auctioneer
     @user = User.new
-    @member=User.where(admin: "0")
+    @member=User.where(user_type: "Auctioneer")
   end
   
 end

@@ -7,16 +7,20 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+  
     if @user.save
       flash[:notice] = @isAdmin #for testing
-      if params[:user][:admin] == "1"
+      if params[:user][:user_type] == "Admin"
         login(params[:user][:email], params[:user][:password])
         flash[:success] = 'Welcome! Admin'
-      else
+      elsif params[:user][:user_type] == "Judge"
         flash[:success] = 'Successfully created a Judge'
+      elsif params[:user][:user_type] == "Auctioneer"
+        flash[:success] = 'Successfully created a Auctioneer'
       end
       redirect_to admin_path 
     else
+      # TODO: if registration is failed, what should we de?
       render 'new'
     end
   end
@@ -35,6 +39,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :admin)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :user_type)
   end
 end

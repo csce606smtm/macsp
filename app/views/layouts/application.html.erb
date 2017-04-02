@@ -17,7 +17,7 @@
     <div id="navbar">
       <ul class="nav navbar-nav">
         <% if current_user %>
-           <% if current_user.admin == 1 || current_user.admin == true %>
+           <% if current_user.user_type == 'Admin' %>
              <li><%= link_to 'Admin Page', admin_path %></li>
              <li><%= link_to 'Setup', setup_path %></li>
            <% else %>

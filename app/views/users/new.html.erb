@@ -19,11 +19,5 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
   </div>
-  <div class="field form-group">
-    <div class="checkbox-inline">
-      <%= f.check_box :admin %>
-      <%= f.label :admin, "Admin Privileges" %><br>
-    </div>
-  </div>
   <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>
 <% end %>
