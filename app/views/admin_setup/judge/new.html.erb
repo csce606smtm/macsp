@@ -59,6 +59,7 @@
         <th>Email</th>
         <th>Password</th>
         <th>Score Sheet</th>
+        <th>Edit/Delete</th>
       </tr>
     </thead>
     
@@ -69,6 +70,8 @@
         <td><%= value.email %></td>
         <td><%#= value.pw %></td>
         <td><%#= member.ss %></td>
+        <td><%=  link_to 'Delete', admin_setup_auctioneer_path(value), :method => :delete %></td>
+
       </tr>
       <% end %>
     </tbody>

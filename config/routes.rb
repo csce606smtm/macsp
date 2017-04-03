@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   namespace :admin_setup do
-    resources :judge, only: [:index, :new, :create]
-    resources :auctioneer, only: [:index, :new, :create]
+    resources :judge, only: [:new, :create, :destroy, :edit, :show]
+    resources :auctioneer, only: [:new, :create, :destroy, :edit, :show]
   end
   get 'admin_setup' => 'admin_setup#setup'
   
