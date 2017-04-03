@@ -21,6 +21,13 @@ class AdminSetup::AuctioneerController < ApplicationController
             redirect_to new_admin_setup_auctioneer_path
     end
 
+    def destroy
+        @auctioneer= User.find params[:id]
+        @auctioneer.destroy
+        flash[:notice] = "Auctioneer #{@auctioneer.name} deleted"
+        redirect_to new_admin_setup_auctioneer_path
+    end
+
   private
 
   def user_params
