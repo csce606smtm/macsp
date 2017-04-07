@@ -9,6 +9,53 @@
     <li class='active'><%= link_to 'Questions', new_admin_setup_question_path %></li>
 </ul>
 
-<h2>Questions</h2>
+<h2>Add New Questions</h2>
+
+<form class='form-horizontal' method='post'>
+
+<div class="form-group">
+      <label class="control-label col-sm-2">Select a contest</label>
+      <div class='col-sm-10'>
+        <select class="form-control">
+          <option>Lonestar Auction 2017</option>
+          <option>Texas Auctioneers 2017</option>
+          <option>Auction Extradonaire Winter Special</option>
+        </select>
+      </div>
+</div>
+
+<div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" value='+ Add new question' class="btn btn-primary btn-med">
+        <!--<%#= f.submit 'Submit', class: 'btn btn-primary btn-med' %>-->
+      </div>
+    </div>
+
+<div class="form-group">
+      <label class="control-label col-sm-2">Content
+        <!--<%#= f.label :name %>-->
+      </label>
+      <div class="col-sm-10">
+        <input class="form-control" placeholder="Enter question" required="required" type="text">
+        <!--<%#= f.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>-->
+      </div>
+</div>
+
+<div class="form-group">  
+      <label class="control-label col-sm-2">Type
+      </label>
+      <div class="col-sm-offset-2 col-sm-10">
+          <label class="checkbox-inline">
+            <%#= f.label :level %>
+            <input type="checkbox" value="">Integer
+          </label>
+          <label class="checkbox-inline">
+            <%#= f.label :level %>
+            <input type="checkbox" value="">Text
+          </label>
+      </div>
+</div>
+
+</form>
 
   
