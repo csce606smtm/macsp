@@ -1,9 +1,10 @@
-<!--<li><%= link_to 'Judge', new_admin_setup_judge_path %></li>-->
-<!--<li><%= link_to 'Auctioneer', new_admin_setup_auctioneer_path %></li>-->
+<script>
+  document.getElementById("admin-setup-nav").className = "active";
+</script>
 
 <ul class="nav nav-tabs">
-    <li class="active"><%= link_to 'Schedule', '#' %></li>
+    <li class='active'><%= link_to 'Contest', '#' %></li>
     <li><%= link_to 'Judge', new_admin_setup_judge_path %></li>
     <li><%= link_to 'Auctioneer', new_admin_setup_auctioneer_path %></li>
+    <li><%= link_to 'Questions', '#' %></li>
 </ul>
-<!--Schedule will appear here-->

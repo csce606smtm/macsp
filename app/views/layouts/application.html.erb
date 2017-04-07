@@ -18,8 +18,8 @@
       <ul class="nav navbar-nav">
         <% if current_user %>
            <% if current_user.user_type == 'Admin' %>
-             <li><%= link_to 'Admin Page', admin_index_path %></li>
-             <li><%= link_to 'Setup', admin_setup_path %></li>
+             <li id="admin-nav"><%= link_to 'Admin Page', admin_index_path %></li>
+             <li id="admin-setup-nav"><%= link_to 'Setup', admin_setup_path %></li>
            <% else %>
              <li><%= link_to 'Judge Page', judge_index_path %></li>
            <% end %> 
