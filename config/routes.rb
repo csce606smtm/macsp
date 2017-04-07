@@ -11,12 +11,17 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   namespace :admin_setup do
+    resources :contest, only: [:new, :create, :destroy, :edit, :show]
     resources :judge, only: [:new, :create, :destroy, :edit, :show]
     resources :auctioneer, only: [:new, :create, :destroy, :edit, :show]
+    resources :question, only: [:new, :create, :destroy, :edit, :show]
   end
   get 'admin_setup' => 'admin_setup#setup'
+  get 'admin_judge' => 'admin#judge'
+  get 'admin_auctioneer' => 'admin#auctioneer'
+  get 'admin_contest' => 'admin#contest'
   
-  resources :admin, only: [:index]
+  resources :admin, only: [:index, :judge, :auctioneer, :contest]
   resources :judge, only: [:index]
 
   

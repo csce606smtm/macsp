@@ -4,4 +4,12 @@ class AdminController < ApplicationController
     def index
     end
     
+    def contest
+    end 
+    
+    def judge
+    end
+    
+    def auctioneer
+    end
 end
