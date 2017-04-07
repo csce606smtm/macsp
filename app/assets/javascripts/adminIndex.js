@@ -1,0 +1,1 @@
+// I would like to put my js file in here but need probably do something found here http://railsapps.github.io/rails-javascript-include-external.html

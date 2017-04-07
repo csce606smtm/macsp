@@ -9,6 +9,79 @@
     <li><%= link_to 'Questions', new_admin_setup_question_path %></li>
 </ul>
 
-<h2>Contest Info</h2>
+<h2>Setup a Contest</h2>
+<%= form_for @user, url: {action: "create"}, :html => {:class => 'form-horizontal'} do |f| %>
+<%= render 'shared/errors', object: @user %>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <%= f.label :name %>
+      </label>
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <label for="user_name">Date</label>
+        <!--<%= f.label :email %> </label> -->
+      <div class="col-sm-10">
+        <%= f.email_field :email, class: 'form-control', placeholder: 'Enter contest date', required: true %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <label for="user_name">Location</label>
+        <%= f.label :password %></label>
+      <div class="col-sm-10"> 
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Enter password', required: true %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2">
+        <%= f.label :password_confirmation %>
+      </label>
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm password', required: true %>
+      </div>
+    </div>
+   
+    <div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit 'Register Judge', class: 'btn btn-primary btn-med' %>
+      </div>
+    </div>
+<% end %>
+
+<div class="container">
+  <h2>Current Judges</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Score Sheet</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @member.each do |value|%>
+      <tr>
+        <td><%= value.name %></td>
+        <td><%= value.email %></td>
+        <td><%#= value.pw %></td>
+        <td><%#= member.ss %></td>
+        <td><%=  link_to 'Delete', admin_setup_auctioneer_path(value), :method => :delete %></td>
+
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
   

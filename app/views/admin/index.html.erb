@@ -1,6 +1,4 @@
-<script>
-  document.getElementById("admin-nav").className = "active";
-</script>
+
 
 <ul class="nav nav-tabs">
     <li><%= link_to 'Contest', admin_contest_path %></li>
@@ -8,4 +6,148 @@
     <li><%= link_to 'Auctioneer', admin_auctioneer_path %></li>
 </ul>
 
-<h1>This is admin main page. Select one to view</h1>
+<div class="container">
+<h1>Select a contest!</h1>
+<div style="right:-240px;"> <h5>(If no contest yet exists head over to the setup tab and create one!)</h5> </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3">
+            <a class="btn btn-primary btn-select">
+                <input type="hidden" class="btn-select-input" id="" name="" value="" />
+                <span class="btn-select-value">Select an Item</span>
+                <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+                <ul>
+                    <li class="selected">Lonestar Auction 2017</li>
+                    <li>Texas Auctioneers 2017</li>
+                    <li>Auction Extradonaire Winter Special</li>
+                </ul>
+            </a>
+        </div>
+</div>
+
+<div class="container">
+  <h2 id="resultsTitle">Realtime Results</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+          <th>Divison</th>
+        <th>Contestant Name</th>
+        <th>Current Average Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>State Champion</td>
+        <td>Mark Caate</td>
+        <td>8.4</td>
+      </tr>
+      <tr>
+        <td>State Champion</td>
+        <td>Will Ferrell</td>
+        <td>6.7</td>
+      </tr>
+      <tr>
+        <td>State Champion</td>
+        <td>Billy Jay</td>
+        <td>5.5</td>
+      </tr>
+      <!--This was an easy fix for the seperator row. When building say something like "if lastDivision != currentDivision insert blank blank blank-->
+              <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <tr>
+        <td>Rookie</td>
+        <td>Aaron Perrine</td>
+        <td>9.6</td>
+      </tr>
+      
+      <tr>
+        <td>Rookie</td>
+        <td>Hannah Fowler</td>
+        <td>9.6</td>
+      </tr>
+      <tr>
+        <td>Rookie</td>
+        <td>Donald Trump</td>
+        <td>0.2</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container" id="questionContainer">
+  <h2 id="judgeTitle">Judges</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Judge Name</th>
+        <th>Judge Email</th>
+        <th>Judge Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Avery Kelos</td>
+        <td>averyyyy@gmail.com</td>
+        <td>iThinkImSuperCool</td>
+      </tr>
+      <tr>
+        <td>Popi Junte</td>
+        <td>ppooppi@yahoo.com</td>
+        <td>booYah12_12</td>
+      </tr>
+      <tr>
+        <td>Kurt Vone</td>
+        <td>isthisanemail@gmail.com</td>
+        <td>shrimpSmoothies</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+$(document).ready(function () {
+    $(".btn-select").each(function (e) {
+        document.getElementById("admin-nav").className = "active"
+        var value = $(this).find("ul li.selected").html();
+        if (value != undefined) {
+            $(this).find(".btn-select-input").val(value);
+            $(this).find(".btn-select-value").html(value);
+        }
+    });
+});
+
+$(document).on('click', '.btn-select', function (e) {
+    e.preventDefault();
+    var ul = $(this).find("ul");
+    if ($(this).hasClass("active")) {
+        if (ul.find("li").is(e.target)) {
+            var target = $(e.target);
+            target.addClass("selected").siblings().removeClass("selected");
+            var value = target.html();
+            $(this).find(".btn-select-input").val(value);
+            $(this).find(".btn-select-value").html(value);
+            document.getElementById("resultsTitle").innerText = 'Realtime Results - ' + value.toString();
+            document.getElementById("judgeTitle").innerText += 'Judges - ' + value.toString();
+        }
+        ul.hide();
+        $(this).removeClass("active");
+    }
+    else {
+        $('.btn-select').not(this).each(function () {
+            $(this).removeClass("active").find("ul").hide();
+        });
+        ul.slideDown(300);
+        $(this).addClass("active");
+    }
+});
+
+$(document).on('click', function (e) {
+    var target = $(e.target).closest(".btn-select");
+    if (!target.length) {
+        $(".btn-select").removeClass("active").find("ul").hide();
+    }
+});
+
+</script>
