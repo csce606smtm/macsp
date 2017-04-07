@@ -1,14 +1,14 @@
 # Aaron created this April 7 when trying to build results page.... NEEDS FIXES
-class Admin::JudgeController < ApplicationController
+class Admin::ResultController < ApplicationController
+    respond_to :js, :json, :html
     skip_before_action :require_login
 
     def new
-        @user = User.new
-        @member=User.where(user_type: "Judge")
+
     end
 
     def index
-        @user = User.new
+        flash[:success] = 'Successfully'
     end
     def create
         @user = User.new(user_params)
@@ -33,6 +33,10 @@ class Admin::JudgeController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :name)
+  end
+  
+  def some_bs
+      flash[:success] = 'Successfully'
   end
 
 end

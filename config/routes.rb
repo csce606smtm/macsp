@@ -21,9 +21,8 @@ Rails.application.routes.draw do
   get 'admin_auctioneer' => 'admin#auctioneer'
   get 'admin_contest' => 'admin#contest'
   
-  resources :admin, only: [:index, :judge, :auctioneer, :contest]
+  resources :admin, only: [:index, :judge, :auctioneer, :contest, :new, :create]
   resources :judge, only: [:index]
-
   
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
