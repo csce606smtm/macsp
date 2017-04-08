@@ -1,0 +1,100 @@
+
+<%= form_for(@qsheet, :html => {:class => 'form-horizontal'}) do |f| %>
+
+  <% if @qsheet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@qsheet.errors.count, "error") %> prohibited this qsheet from being saved:</h2>
+
+      <ul>
+      <% @qsheet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+      <%= f.label :contest, class: 'control-label col-sm-2' %>
+    <div class="row">
+    <div class="col-xs-6 col-sm-3">
+        <a class="btn btn-primary btn-select">
+            <input type="hidden" class="btn-select-input" id="" name="" value="" />
+            <span class="btn-select-value">Select an Item</span>
+            <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+            <ul>
+                <li class="selected">Lonestar Auction 2017</li>
+                <li>Auction Extradonaire Winter Special</li>
+                <li>Texas AA Auction 2017</li>
+                <li>Auctioneer Showdown 2017</li>
+            </ul>
+        </a>
+    </div>
+</div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= submit_tag "+ Add question", :type => 'button', :id => 'addQuestion', 
+          :class => 'btn btn-primary btn-med',
+          :onclick => 'addQuestionField()' %> 
+    </div>
+  </div>
+   
+  <h2>Questions</h2>
+   
+  <div id="myList" class="form-group">
+    <!--This is where the questions are added dynamically-->
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "DONE", class: "btn btn-primary btn-med" %>
+    </div>
+  <div>
+<% end %>
+
+
+<script>
+
+$(document).ready(function () {
+    $(".btn-select").each(function (e) {
+        document.getElementById("admin-nav").className = "active"
+        var value = $(this).find("ul li.selected").html();
+        if (value != undefined) {
+            $(this).find(".btn-select-input").val(value);
+            $(this).find(".btn-select-value").html(value);
+        }
+    });
+});
+
+$(document).on('click', '.btn-select', function (e) {
+    e.preventDefault();
+    var ul = $(this).find("ul");
+    if ($(this).hasClass("active")) {
+        if (ul.find("li").is(e.target)) {
+            var target = $(e.target);
+            target.addClass("selected").siblings().removeClass("selected");
+            var value = target.html();
+            $(this).find(".btn-select-input").val(value);
+            $(this).find(".btn-select-value").html(value);
+        }
+        ul.hide();
+        $(this).removeClass("active");
+    }
+    else {
+        $('.btn-select').not(this).each(function () {
+            $(this).removeClass("active").find("ul").hide();
+        });
+        ul.slideDown(300);
+        $(this).addClass("active");
+    }
+});
+
+$(document).on('click', function (e) {
+    var target = $(e.target).closest(".btn-select");
+    if (!target.length) {
+        $(".btn-select").removeClass("active").find("ul").hide();
+    }
+});
+
+</script>

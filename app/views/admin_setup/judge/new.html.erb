@@ -5,7 +5,7 @@
     <li><%= link_to 'Contest', new_admin_setup_contest_path %></li>
     <li class="active"><%= link_to 'Judge',new_admin_setup_judge_path %></li>
     <li><%= link_to 'Auctioneer',new_admin_setup_auctioneer_path %></li>
-    <li><%= link_to 'Questions', new_admin_setup_question_path %></li>
+    <li><%= link_to 'Questions', qsheets_path %></li>
 </ul>
 
 <h2>Register Judge</h2>
@@ -13,9 +13,7 @@
 <%= render 'shared/errors', object: @user %>
     
     <div class="form-group">
-      <label class="control-label col-sm-2">
-        <%= f.label :name %>
-      </label>
+      <%= f.label :name, class: 'control-label col-sm-2' %>
       <div class="col-sm-10">
         <%= f.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>
       </div>

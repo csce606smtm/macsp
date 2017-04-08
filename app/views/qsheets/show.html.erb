@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contest:</strong>
+<div class="container">
+  <h2>Current Judges</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Question Number</th>
+        <th>Content</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+      <tbody>
+      <% @tSheet.each do |question|%>
+      <tr>
+        <td><%= @incr.to_s %></td>
+        <td><%= question.content %></td>
+        <td><%=  link_to 'Delete', qsheet_path(question), :method => :delete %></td>
+        <%= @incr += 1 %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+  
+</p>
+
+<%= link_to 'Edit', edit_qsheet_path(@qsheet) %> |
+<%= link_to 'Back', qsheets_path %>
+
+
