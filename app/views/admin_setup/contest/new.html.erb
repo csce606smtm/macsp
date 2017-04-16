@@ -10,16 +10,16 @@
 </ul>
 
 <h2>Add New Contest</h2>
-<%= form_for @user, url: {action: "create"}, :html => {:class => 'form-horizontal'} do |f| %>
-<%= render 'shared/errors', object: @user %>
+<%= form_for @contest, url: {action: "create"}, :html => {:class => 'form-horizontal'} do |contest| %>
+<%= render 'shared/errors', object: @contest %>
     
     <div class="form-group">
       <label class="control-label col-sm-2">Name
-        <!--<%#= f.label :name %>-->
+        <!--<%#= contest.label :name %> -->
       </label>
       <div class="col-sm-10">
-        <input class="form-control" placeholder="Enter contest name" required="required" type="text">
-        <!--<%#= f.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>-->
+        <!-- <input class="form-control" placeholder="Enter contest name" required="required" type="text"> -->
+        <%= contest.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>
       </div>
     </div>
   
@@ -27,18 +27,19 @@
       <label class="control-label col-sm-2">Date</label>
         <!--<%#= f.label :email %> </label> -->
       <div class="col-sm-10">
-        <input class="form-control" placeholder="Enter contest date" required="required" type="text">
-        <!--<%#= f.email_field :email, class: 'form-control', placeholder: 'Enter contest date', required: true %>-->
+        <!-- <input class="form-control" placeholder="Enter contest date" required="required" type="text"> -->
+        <%= contest.date_field :start_date, class: 'form-control', placeholder: 'Enter contest date', required: true %>
       </div>
     </div>
     
     <div class="form-group">
       <label class="control-label col-sm-2">Divisions</label>
-        <!--<%#= f.label :password %></label>-->
       <div class="col-sm-10"> 
-        <input class="form-control" placeholder="e.g. Rookie:1, Veteran:2" required="required" type="text">
+        <!-- <input class="form-control" placeholder="e.g. Rookie:1, Veteran:2" required="required" type="text"> -->
         <h4><small>Hint: Enter list of division names and number of rounds in format Division Name:# of rounds</small></h4>
-        <!--<%#= f.password_field :password, class: 'form-control', placeholder: 'Enter password', required: true %>-->
+        <%= fields_for @division do |division| %>
+          <%= division.text_field :name, class: 'form-control', placeholder: 'e.g. Rookie:1, Veteran:2', required: true %> 
+        <% end %>
       </div>
     </div>
    
@@ -64,18 +65,15 @@
       </tr>
     </thead>
     
-    <!--<tbody>-->
-    <!--  <#% @member.each do |value|%>-->
-    <!--  <tr>-->
-    <!--    <td><#%= value.name %></td>-->
-    <!--    <td><#%= value.email %></td>-->
-        <td><%#= value.pw %></td>
-        <td><%#= member.ss %></td>
-    <!--    <td><#%=  link_to 'Delete', admin_setup_auctioneer_path(value), :method => :delete %></td>-->
-
-    <!--  </tr>-->
-    <!--  <#% end %>-->
-    <!--</tbody>-->
+    <tbody>
+    <% @dList.each do |value|%>
+     <tr>
+      <td> <%= value.name %></td>
+      <td> <%= value.name %></td>
+      <td> <%= value.round %></td>
+     </tr>
+    <% end %>
+    </tbody>
   </table>
 </div>
 

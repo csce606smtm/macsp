@@ -18,7 +18,7 @@ class AdminSetup::JudgeController < ApplicationController
         else
             flash[:success] = 'Failed to created a Judge'
         end
-            redirect_to new_admin_setup_judge_path
+        redirect_to new_admin_setup_judge_path
     end
 
     def destroy
