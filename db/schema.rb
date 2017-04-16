@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408172710) do
+ActiveRecord::Schema.define(version: 20170408010208) do
+
+  create_table "auctioneers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contests", force: :cascade do |t|
+    t.integer  "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -29,16 +42,38 @@ ActiveRecord::Schema.define(version: 20170408172710) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
-  create_table "qsheets", force: :cascade do |t|
-    t.string   "contest"
+  create_table "divisions", force: :cascade do |t|
+    t.integer  "round"
+    t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "judges", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "q_and_as", force: :cascade do |t|
+    t.integer  "answer_integer"
+    t.string   "answer_string"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "questions", force: :cascade do |t|
-    t.string   "dataType"
-    t.string   "content"
-    t.integer  "qsheet_id"
+    t.string   "description"
+    t.string   "format"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scoresheets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
