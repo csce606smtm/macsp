@@ -130,15 +130,6 @@ $(document).on('click', '.btn-select', function (e) {
             $(this).find(".btn-select-value").html(value);
             document.getElementById("resultsTitle").innerText = 'Realtime Results - ' + value.toString();
             document.getElementById("judgeTitle").innerText += 'Judges - ' + value.toString();
-               $.ajax({
-    type: 'POST',
-    url: 'result/some_bs',
-    dataType: 'json',
-    data: {msg: "hello world"},
-    success: function(json, status, xhr){
-      // $("#show_message").html(json.message)
-    }
-  });
         }
         ul.hide();
         $(this).removeClass("active");
