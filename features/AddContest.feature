@@ -1,7 +1,7 @@
-Feature: add an auctioneer
+Feature: add a contest
 
   As an admin user
-  I want to add an auctioneer
+  I want to add a contest
 
 Background: users in database
 
@@ -15,10 +15,11 @@ Scenario: add an auctioneer
   And  I fill in "Password" with "123"
   And  I press "Log In"
   And  I follow "Setup"
-  And  I follow "Auctioneer"
-  And  I fill in "Name" with "Auction Doe"
-  And  I fill in "Email" with "ebay@gmail.com"
-  And  I fill in "Password" with "1231"
-  And  I fill in "Password confirmation" with "1231"
-  And  I press "Add Auctioneer"
-  Then I should be on the new auctioneer page
+  And  I follow "Contest"
+  Then I should see "Add New Contest"
+  And  I should see "Current Contests"
+  And  I fill in "Name" with "Test contest"
+  And  I fill in "Date" with "2017/05/05"
+  And  I fill in "Divisions" with "Rookie:2, Veteran:3"
+  And  I press "Submit"
+  Then I should see "Successfully added division"

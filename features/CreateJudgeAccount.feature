@@ -10,7 +10,7 @@ Background: users in database
   | admin1@gmail.com    | 123          | 123                      | Lance         | Admin        |
 
 Scenario: create a judge account
-  Given I am on the home page
+  Given I am on the login page
   And  I fill in "Email" with "admin1@gmail.com"
   And  I fill in "Password" with "123"
   And  I press "Log In"
@@ -21,4 +21,4 @@ Scenario: create a judge account
   And  I fill in "Password" with "1231"
   And  I fill in "Password confirmation" with "1231"
   And  I press "Register"
-  Then I should be on the admin page
+  Then I should be on the new judge page

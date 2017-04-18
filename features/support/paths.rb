@@ -14,7 +14,7 @@ module NavigationHelpers
     
     case page_name
 
-    when /^the home page$/
+    when /^the login page$/
       log_in_path
       
     # Add more mappings here.
@@ -22,8 +22,20 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
-
+    when /^the main page$/
+      
+      root_path
+      
+    when /^the new auctioneer page$/
+      
+      new_admin_setup_auctioneer_path
+      
+    when /^the new judge page$/
+      
+      new_admin_setup_judge_path
+      
     else
+    
       begin
         page_name =~ /^the (.*) page$/
         path_components = $1.split(/\s+/)
@@ -36,7 +48,7 @@ module NavigationHelpers
         #   self.send(final_path)
         # end
         
-        self.send(final_path)
+        final_path
         
       rescue NoMethodError, ArgumentError
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
