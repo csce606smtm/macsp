@@ -5,7 +5,7 @@ class CreateScoresheets < ActiveRecord::Migration
       t.timestamps null: false
     end
     
-    add_foreign_key :scoresheets, :divisions
-    add_foreign_key :scoresheets, :questions
+#    add_foreign_key :scoresheets, :divisions
+#    add_foreign_key :scoresheets, :questions
   end
 end

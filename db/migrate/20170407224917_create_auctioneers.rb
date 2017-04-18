@@ -5,7 +5,7 @@ class CreateAuctioneers < ActiveRecord::Migration
       t.timestamps null: false
     end
     
-    add_foreign_key :auctioneers, :users
-    add_foreign_key :auctioneers, :divisions
+#    add_foreign_key :auctioneers, :users
+#    add_foreign_key :auctioneers, :divisions
   end
 end

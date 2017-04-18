@@ -5,7 +5,7 @@ class CreateJudges < ActiveRecord::Migration
       t.timestamps null: false
     end
     
-    add_foreign_key :judges, :users
-    add_foreign_key :judges, :contests
+#    add_foreign_key :judges, :users
+#    add_foreign_key :judges, :contests
   end
 end

@@ -4,10 +4,11 @@ class CreateResults < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    
+=begin    
     add_foreign_key :results, :divisions
     add_foreign_key :results, :judges
     add_foreign_key :results, :auctioneers
     add_foreign_key :results, :questions
+=end
   end
 end

@@ -7,6 +7,6 @@ class CreateQAndAs < ActiveRecord::Migration
       t.timestamps null: false
     end
     
-    add_foreign_key :q_and_as, :questions
+#    add_foreign_key :q_and_as, :questions
   end
 end
