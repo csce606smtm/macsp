@@ -1,7 +1,3 @@
-<script>
-  document.getElementById("admin-setup-nav").className = "active";
-</script>
-
 <ul class="nav nav-tabs">
     <li><%= link_to 'Contest', new_admin_setup_contest_path %></li>
     <li><%= link_to 'Judge', new_admin_setup_judge_path %></li>
@@ -9,4 +5,12 @@
     <li class='active'><%= link_to 'Questions', qsheets_path %></li>
 </ul>
 
-  
+<%= link_to(qsheets_path, :html => {:class => 'btn btn-default btn-med'}) do %>
+<span class='glyphicon glyphicon-chevron-left'>Back</span>
+<% end %>
+
+<h1>New Qsheet</h1>
+
+<%= render 'form' %>
+
+
