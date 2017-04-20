@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -10,6 +11,22 @@
         <th>Question Number</th>
         <th>Content</th>
         <th>Delete</th>
+=======
+<!--<p id="notice"><%#= notice %></p>-->
+
+<p>
+  <strong>Question Sheet created for contest ________ !</strong>
+</p>
+
+<div class="container">
+  <h2>Questions</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class='col-sm-1'>Number</th>
+        <th class='col-sm-4'>Content</th>
+        <th class='col-sm-1'>Delete</th>
+>>>>>>> origin/test3
       </tr>
     </thead>
       <tbody>
@@ -17,7 +34,15 @@
       <tr>
         <td><%= @incr.to_s %></td>
         <td><%= question.content %></td>
+<<<<<<< HEAD
         <td><%=  link_to 'Delete', qsheet_path(question), :method => :delete %></td>
+=======
+        <!--<td><%#=  link_to 'Delete', qsheet_path(question), :method => :delete %></td>-->
+        <td>
+          <%= link_to(qsheet_path(question), :method => :delete, :html => {:class => 'btn btn-default btn-med'}) do %>
+          <span class='glyphicon glyphicon-trash'></span></td>
+          <% end %>
+>>>>>>> origin/test3
         <%= @incr += 1 %>
       </tr>
       <% end %>

@@ -25,7 +25,10 @@ Rails.application.routes.draw do
   resources :admin, only: [:index, :judge, :auctioneer, :contest, :new, :create]
   resources :judge, only: [:index]
   resources :qsheets, only: [:index, :edit, :new, :show]
+<<<<<<< HEAD
   
+=======
+>>>>>>> origin/test3
   
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
