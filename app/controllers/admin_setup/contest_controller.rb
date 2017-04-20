@@ -11,17 +11,16 @@ class AdminSetup::ContestController < ApplicationController
     def index
     end
     def create
-        @contest = Contest.new(contest_params)
-        if @contest.save
-            flash[:success] = 'Successfully added contest'
-        end
-       
         #@contest = Contest.find_by :params[:contest][:name]
-        
         
         parser = DivisionParser.new(params[:division][:name])
         parser.parse_input_string
         rounds = parser.rounds
+        
+        @contest = Contest.new(contest_params) #moved here in case of error during parsing
+        if @contest.save
+            flash[:success] = 'Successfully added contest'
+        end
         
         rounds.each do |round|
             @division = Division.new(:name => round[0],
@@ -49,9 +48,9 @@ class AdminSetup::ContestController < ApplicationController
         params.require(:division).permit(:name)
     end
     
-   def user_params
-    #params.require(:user).permit(:email, :password, :password_confirmation, :name)
-  end
+    def user_params
+        #params.require(:user).permit(:email, :password, :password_confirmation, :name)
+    end
 
 end
 
@@ -80,7 +79,8 @@ class DivisionParser
     if @input_string.is_a? String
       #nothing happens
     else
-      raise "Input is not a string"
+      flash[:failure] = "Division input is not a string, talk to a developer"
+      redirect_to new_admin_setup_contest_path
     end
     
     num_rounds = 0
@@ -116,7 +116,8 @@ class DivisionParser
         end
         
         if parsed_number == nil
-          raise "Input is missing the number of rounds"
+          flash[:failure] = "Division input is missing the number of rounds"
+          redirect_to new_admin_setup_contest_path
         end
         
         parsed_number = parsed_number.to_i
@@ -127,7 +128,8 @@ class DivisionParser
         end
         
         if @input_string[i] != "," and @input_string[i] != nil
-          raise "Input is missing a comma"
+          flash[:failure] = "Division input is missing a comma"
+          redirect_to new_admin_setup_contest_path
         end
         i += 1
         
@@ -140,7 +142,8 @@ class DivisionParser
         end
         
       else
-        raise "Input contains unfamilar characters"
+        flash[:failure] = "Division input contains unfamilar characters"
+        redirect_to new_admin_setup_contest_path
       end
       
       i += 1

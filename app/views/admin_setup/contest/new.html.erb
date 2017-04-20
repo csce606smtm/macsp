@@ -44,7 +44,7 @@
         <%= fields_for @division do |division| %>
           <%= division.text_field :name, class: 'form-control', placeholder: 'Divisions', required: true %> 
         <% end %>
-        <h4><small>Hint: Enter list of division names and number of rounds in format Division Name:# of rounds</small></h4>
+        <h4><small>Format: Division A:#, Division B:#, ... (# is the number of rounds)</small></h4>
       </div>
     </div>
    
