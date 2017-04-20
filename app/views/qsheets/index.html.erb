@@ -17,7 +17,11 @@
   <thead>
     <tr>
       <th>Contest</th>
+<<<<<<< HEAD
       <th colspan="3"></th>
+=======
+      <!--<th colspan="3"></th>-->
+>>>>>>> origin/test3
     </tr>
   </thead>
 
@@ -28,7 +32,15 @@
         <%= @currIndex += 1 %>
         <td><%= link_to 'Show',qsheet %></td>
         <td><%= link_to 'Edit', edit_qsheet_path(qsheet) %></td>
+<<<<<<< HEAD
         <td><%= link_to 'Destroy', qsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+=======
+        <!--<td><%#= link_to 'Destroy', qsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+        <td>
+        <%= link_to(qsheets_path, :html => {:class => 'btn btn-default btn-med'}) do %>
+          <span class='glyphicon glyphicon-trash'></span></td>
+        <% end %>
+>>>>>>> origin/test3
       </tr>
     <% end %>
   </tbody>

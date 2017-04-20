@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170416205118) do
 
   create_table "auctioneers", force: :cascade do |t|
@@ -25,6 +26,9 @@ ActiveRecord::Schema.define(version: 20170416205118) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 20170420143813) do
+>>>>>>> origin/test3
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -42,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170416205118) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
+<<<<<<< HEAD
   create_table "divisions", force: :cascade do |t|
     t.integer  "round"
     t.integer  "c_id"
@@ -76,6 +81,18 @@ ActiveRecord::Schema.define(version: 20170416205118) do
   end
 
   create_table "scoresheets", force: :cascade do |t|
+=======
+  create_table "qsheets", force: :cascade do |t|
+    t.string   "contest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "dataType"
+    t.string   "content"
+    t.integer  "qsheet_id"
+>>>>>>> origin/test3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
