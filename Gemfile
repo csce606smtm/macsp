@@ -19,7 +19,6 @@ group :production do
   gem 'thin'
   gem 'pg'
   gem 'rails_12factor'
-  gem 'responders', '~> 2.0'
 end
 
 # Use SCSS for stylesheets
