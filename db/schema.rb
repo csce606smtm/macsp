@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416205118) do
+ActiveRecord::Schema.define(version: 20170420143813) do
 
   create_table "auctioneers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -63,26 +63,27 @@ ActiveRecord::Schema.define(version: 20170416205118) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "qsheets", force: :cascade do |t|
+    t.string   "contest"
+    t.string   "division"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "type"
+    t.string   "content"
+    t.integer  "qsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "results", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "scoresheets", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-    
-  create_table "qsheets", force: :cascade do |t|
-    t.string   "contest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string   "dataType"
-    t.string   "content"
-    t.integer  "qsheet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -111,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170416205118) do
     t.datetime "reset_password_email_sent_at"
     t.string   "user_type"
   end
-  
+
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"

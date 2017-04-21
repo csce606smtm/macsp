@@ -122,7 +122,7 @@ $(document).on('click', '.btn-select', function (e) {
             $(this).find(".btn-select-input").val(value);
             $(this).find(".btn-select-value").html(value);
             document.getElementById("resultsTitle").innerText = 'Realtime Results - ' + value.toString();
-            document.getElementById("judgeTitle").innerText += 'Judges - ' + value.toString();
+            document.getElementById("judgeTitle").innerText = 'Judges - ' + value.toString();
         }
         ul.hide();
         $(this).removeClass("active");
