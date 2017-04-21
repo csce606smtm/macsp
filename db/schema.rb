@@ -63,19 +63,26 @@ ActiveRecord::Schema.define(version: 20170416205118) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.string   "description"
-    t.string   "format"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "results", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "scoresheets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+    
+  create_table "qsheets", force: :cascade do |t|
+    t.string   "contest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "dataType"
+    t.string   "content"
+    t.integer  "qsheet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

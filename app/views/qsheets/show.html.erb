@@ -1,15 +1,17 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%#= notice %></p>-->
 
 <p>
-  <strong>Contest:</strong>
+  <strong>Question Sheet created for contest ________ !</strong>
+</p>
+
 <div class="container">
-  <h2>Current Judges</h2>
+  <h2>Questions</h2>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Question Number</th>
-        <th>Content</th>
-        <th>Delete</th>
+        <th class='col-sm-1'>Number</th>
+        <th class='col-sm-4'>Content</th>
+        <th class='col-sm-1'>Delete</th>
       </tr>
     </thead>
       <tbody>
@@ -17,7 +19,11 @@
       <tr>
         <td><%= @incr.to_s %></td>
         <td><%= question.content %></td>
-        <td><%=  link_to 'Delete', qsheet_path(question), :method => :delete %></td>
+        <!--<td><%#=  link_to 'Delete', qsheet_path(question), :method => :delete %></td>-->
+        <td>
+          <%= link_to(qsheet_path(question), :method => :delete, :html => {:class => 'btn btn-default btn-med'}) do %>
+          <span class='glyphicon glyphicon-trash'></span></td>
+          <% end %>
         <%= @incr += 1 %>
       </tr>
       <% end %>
