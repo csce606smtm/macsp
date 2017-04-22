@@ -1,6 +1,8 @@
 class CreateAuctioneers < ActiveRecord::Migration
   def change
     create_table :auctioneers do |t|
+      t.references :user, foreign_key: true
+      t.references :division, foreign_key: true
       
       t.timestamps null: false
     end

@@ -11,19 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420143813) do
+ActiveRecord::Schema.define(version: 20170422220558) do
 
   create_table "auctioneers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "division_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "contests", force: :cascade do |t|
-    t.string   "name"
+    t.string   "contest_name"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -43,47 +45,32 @@ ActiveRecord::Schema.define(version: 20170420143813) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "divisions", force: :cascade do |t|
+    t.string   "division_name"
     t.integer  "round"
-    t.integer  "c_id"
+    t.integer  "contest_id"
     t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
+    t.integer  "qsheet_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "judges", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "contest_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "q_and_as", force: :cascade do |t|
-    t.integer  "answer_integer"
-    t.string   "answer_string"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
   end
 
   create_table "qsheets", force: :cascade do |t|
-    t.string   "contest"
-    t.string   "division"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "division_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
     t.string   "type"
     t.string   "content"
-    t.integer  "qsheet_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "results", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "scoresheets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -111,6 +98,7 @@ ActiveRecord::Schema.define(version: 20170420143813) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.string   "user_type"
+    t.string   "bare_password"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"

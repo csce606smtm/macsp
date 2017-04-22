@@ -3,7 +3,6 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.string :type
       t.string :content
-      t.integer :qsheet_id
 
       t.timestamps null: false
     end
