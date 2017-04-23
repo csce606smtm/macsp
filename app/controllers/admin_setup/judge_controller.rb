@@ -3,18 +3,26 @@ class AdminSetup::JudgeController < ApplicationController
 
     def new
         @user = User.new
-        @member=User.where(user_type: "Judge")
+        @new_judge = Judge.new
+        @member = User.where(user_type: "Judge")
     end
 
     def index
         @user = User.new
+        @new_judge = Judge.new
     end
+    
     def create
         @user = User.new(user_params)
+        @new_judge = Judge.new
+        
         @user.user_type = "Judge"
+        @user.bare_password = @user.password
       
         if @user.save
             flash[:success] = 'Successfully created a Judge'
+            @new_judge.user_id = @user.id
+            @new_judge.save
         else
             flash[:success] = 'Failed to created a Judge'
         end
@@ -22,8 +30,12 @@ class AdminSetup::JudgeController < ApplicationController
     end
 
     def destroy
-        @judge= User.find params[:id]
+        @judge = User.find params[:id]
+        @new_judge = Judge.find_by(user_id: @judge.id)
+        
         @judge.destroy
+        @new_judge.destroy
+        
         flash[:notice] = "Judge #{@judge.name} deleted"
         redirect_to new_admin_setup_judge_path
     end
@@ -31,7 +43,7 @@ class AdminSetup::JudgeController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :bare_password)
   end
 
 end

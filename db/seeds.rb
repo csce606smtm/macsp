@@ -14,27 +14,38 @@ users = [
     {:email => 'judge1@gmail.com',
      :password => '123',
      :name => 'Sungkuen Kim',
-     :user_type =>"Judge"}, 
+     :user_type =>"Judge",
+     :bare_password => "123"}, 
     {:email => 'judge2@gmail.com',
      :password => '123',
      :name => 'Donghwa Shin',
-     :user_type =>"Judge"}, 
+     :user_type =>"Judge",
+     :bare_password => "123"
+    }, 
     {:email => 'judge3@gmail.com',
      :password => '123',
      :name => 'Taejun Jeon',
-     :user_type =>"Judge"}, 
+     :user_type =>"Judge",
+     :bare_password => "123"
+    }, 
     {:email => 'auctioneer1@gmail.com',
      :password => '123',
      :name => 'Eric',
-     :user_type =>"Auctioneer"}, 
+     :user_type =>"Auctioneer",
+     :bare_password => "123"
+    }, 
     {:email => 'auctioneer2@gmail.com',
      :password => '123',
      :name => 'Aaron',
-     :user_type =>"Auctioneer"}, 
+     :user_type =>"Auctioneer",
+     :bare_password => "123"
+    }, 
     {:email => 'auctioneer3@gmail.com',
      :password => '123',
      :name => 'Hannah',
-     :user_type =>"Auctioneer"}, 
+     :user_type =>"Auctioneer",
+     :bare_password => "123"
+    }, 
     ]
 
 users.each do |user|
