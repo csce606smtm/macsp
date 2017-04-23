@@ -24,16 +24,16 @@
       </div>
     </div>
 
+<!--
     <div class="form-group">
       <label class="control-label col-sm-2">
-        <%= contest.label :date %>
+        <%#= contest.label :date %>
       </label>
       <div class="col-sm-10">
-        <!-- <input class="form-control" placeholder="Enter contest date" required="required" type="text"> -->
-        <%= contest.date_field :start_date, class: 'form-control', placeholder: 'Date', required: true %>
+        <%#= contest.date_field :start_date, class: 'form-control', placeholder: 'Date', required: true %>
       </div>
     </div>
-    
+--> 
     <div class="form-group">
       <label class="control-label col-sm-2">
       <%= contest.label :divisions %>
@@ -74,15 +74,12 @@
     <tbody>
     <% @dList.each do |value|%>
      <tr>
-<<<<<<< HEAD
-      <td> <%= value.division_name %></td>
-      <td> <%= value.division_name %></td>
-      <td> <%= value.round %></td>
-=======
       <td> <%= value[0] %></td>
       <td> <%= value[1] %></td>
       <td> <%= value[2] %></td>
->>>>>>> fc21c8ba9229b1b8dbe5ea3d197ca101f22c3acd
+      <td> <%= "--" %></td>
+      <td> <%= "--" %></td>
+      <td> <%= "--" %></td>
      </tr>
     <% end %>
     </tbody>
