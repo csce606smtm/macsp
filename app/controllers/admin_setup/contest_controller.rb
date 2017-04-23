@@ -5,15 +5,16 @@ class AdminSetup::ContestController < ApplicationController
         @contest = Contest.new
         @division = Division.new
         
-        @dList = Division.all
+        @all= Contest.joins(:divisions)
+        @dList= @all.pluck(:contest_name, :division_name, :round)
     end
 
     def index
     end
     def create
-        #@contest = Contest.find_by :params[:contest][:name]
+        #@contest = Contest.find_by :params[:contest][:contest_name]
         
-        parser = DivisionParser.new(params[:division][:name])
+        parser = DivisionParser.new(params[:division][:division_name])
         parser.parse_input_string
         rounds = parser.rounds
         
@@ -23,9 +24,9 @@ class AdminSetup::ContestController < ApplicationController
         end
         
         rounds.each do |round|
-            @division = Division.new(:name => round[0],
+            @division = Division.new(:division_name => round[0],
                                      :round => round[1],
-                                     :c_id => @contest.id)
+                                     :contest_id => @contest.id)
             if @division.save
                 flash[:success] = 'Successfully added division'
             end
@@ -41,11 +42,11 @@ class AdminSetup::ContestController < ApplicationController
   private
 
     def contest_params
-        params.require(:contest).permit(:name, :start_date, :end_date)
+        params.require(:contest).permit(:contest_name, :start_date, :end_date)
     end
     
     def division_params
-        params.require(:division).permit(:name)
+        params.require(:division).permit(:division_name)
     end
     
     def user_params

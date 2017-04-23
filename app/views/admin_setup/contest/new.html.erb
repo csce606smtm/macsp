@@ -15,12 +15,12 @@
     
     <div class="form-group">
       <label class="control-label col-sm-2">
-        <%= contest.label :name %>
+        <%= contest.label :contest_name %>
       </label>
       <div class="col-sm-10">
         <!-- <input class="form-control" placeholder="Enter contest name" required="required" type="text"> -->
         
-        <%= contest.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>
+        <%= contest.text_field :contest_name, class: 'form-control', placeholder: 'Enter full name', required: true %>
       </div>
     </div>
   
@@ -42,7 +42,7 @@
       <div class="col-sm-10"> 
         <!-- <input class="form-control" placeholder="e.g. Rookie:1, Veteran:2" required="required" type="text"> -->
         <%= fields_for @division do |division| %>
-          <%= division.text_field :name, class: 'form-control', placeholder: 'Divisions', required: true %> 
+          <%= division.text_field :division_name, class: 'form-control', placeholder: 'Divisions', required: true %> 
         <% end %>
         <h4><small>Format: Division A:#, Division B:#, ... (# is the number of rounds)</small></h4>
       </div>
@@ -61,9 +61,10 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Date</th>
+        <th>Contest Name</th>
+        <th>Division Name</th>
         <th>Divisions:Rounds</th>
+        <th>Date</th>
         <th>Number of Judges</th>
         <th>Number of Contestants</th>
         <th>Edit or Delete</th>
@@ -73,9 +74,9 @@
     <tbody>
     <% @dList.each do |value|%>
      <tr>
-      <td> <%= value.name %></td>
-      <td> <%= value.name %></td>
-      <td> <%= value.round %></td>
+      <td> <%= value[0] %></td>
+      <td> <%= value[1] %></td>
+      <td> <%= value[2] %></td>
      </tr>
     <% end %>
     </tbody>
