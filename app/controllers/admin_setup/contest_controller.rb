@@ -22,6 +22,7 @@ class AdminSetup::ContestController < ApplicationController
               puts did[:contest_id]
               puts contest[:contest_id]
               if (did[:contest_id] == contest[:contestid])
+                puts "hi"
                 cnt_a = cnt_a + 1
               end
             end
@@ -169,7 +170,7 @@ class DivisionParser
       
       i += 1
     end
-
+    return true
   end
   
   def rounds
