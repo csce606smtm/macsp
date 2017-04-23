@@ -20,6 +20,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'responders', '~> 2.0'
+  gem 'pluck_to_hash'
 end
 
 # Use SCSS for stylesheets
@@ -57,6 +58,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '3.4.2'
   gem 'sqlite3'
+  gem 'pluck_to_hash'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
 end
@@ -73,3 +75,6 @@ group :test do
    gem 'launchy' # a useful debuggin aid for user stories
    gem 'simplecov', :require => false
 end 
+
+
+gem 'pluck_to_hash'
