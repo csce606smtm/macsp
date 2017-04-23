@@ -1,3 +1,4 @@
 class Auctioneer < ActiveRecord::Base
-    belongs_to :divisions
+    belongs_to :division
+    belongs_to :user
 end

@@ -5,13 +5,29 @@ class AdminSetup::ContestController < ApplicationController
         @contest = Contest.new
         @division = Division.new
         
-        @all= Contest.joins(:divisions)
-        @cList= @all.pluck_to_hash(:contest_id, :contest_name, :division_name, :round)
+        @cList = Contest.joins(:divisions).pluck_to_hash(:contest_id, :contest_name, :id, :division_name, :round)
         @cList.each do |contest|
-         #2, 3, 4 
-          @judges.where(:contest_id => User.where())
+            cnt = 0
+            cid_list = User.joins(:judges).pluck_to_hash(:contest_id) 
+            cid_list.each do |cid|
+              if (cid[:contest_id] == contest[:contest_id])
+                cnt = cnt + 1
+              end
+            end
+            contest[:num_judge] = cnt
+            
+            cnt_a = 0
+            did_list = Division.joins(:auctioneers).pluck_to_hash(:contest_id, :user_id, :division_id) 
+            did_list.each do |did|
+              puts did[:contest_id]
+              puts contest[:contest_id]
+              if (did[:contest_id] == contest[:contestid])
+                cnt_a = cnt_a + 1
+              end
+            end
+            puts cnt_a
+            contest[:num_auctioneer] = cnt_a
         end
-          
     end
 
     def index

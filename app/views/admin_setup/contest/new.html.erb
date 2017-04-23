@@ -64,7 +64,6 @@
         <th>Contest Name</th>
         <th>Division Name</th>
         <th>Divisions:Rounds</th>
-        <th>Date</th>
         <th>Number of Judges</th>
         <th>Number of Contestants</th>
         <th>Edit or Delete</th>
@@ -72,12 +71,13 @@
     </thead>
     
     <tbody>
-    <% @dList.each do |value|%>
+    <% @cList.each do |list|%>
      <tr>
-      <td> <%= value[0] %></td>
-      <td> <%= value[1] %></td>
-      <td> <%= value[2] %></td>
-      <td> <%= "--" %></td>
+      <td> <%= list[:contest_name] %></td>
+      <td> <%= list[:division_name] %></td>
+      <td> <%= list[:round] %></td>
+      <td> <%= list[:num_judge] %></td>
+      <td> <%= list[:num_auctioneer] %></td>
       <td> <%= "--" %></td>
       <td> <%= "--" %></td>
      </tr>
