@@ -6,7 +6,12 @@ class AdminSetup::ContestController < ApplicationController
         @division = Division.new
         
         @all= Contest.joins(:divisions)
-        @dList= @all.pluck(:contest_name, :division_name, :round)
+        @cList= @all.pluck_to_hash(:contest_id, :contest_name, :division_name, :round)
+        @cList.each do |contest|
+         #2, 3, 4 
+          @judges.where(:contest_id => User.where())
+        end
+          
     end
 
     def index
