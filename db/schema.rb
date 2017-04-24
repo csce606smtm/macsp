@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(version: 20170422220558) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "type"
+    t.string   "dataType"
     t.string   "content"
+    t.integer  "qsheet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
