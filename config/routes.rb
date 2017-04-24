@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   get 'admin_contest' => 'admin#contest'
   
   resources :admin, only: [:index, :judge, :auctioneer, :contest, :new, :create]
-  resources :judge, only: [:index]
+  resources :judge, only: [:index, :score]
   resources :qsheets, only: [:index, :edit, :new, :show]
+  
+  get 'judge_score' => 'judge#score'
 
   
   get '/log_in', to: 'sessions#new', as: :log_in
