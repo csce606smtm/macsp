@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422220558) do
+ActiveRecord::Schema.define(version: 20170425191343) do
 
   create_table "auctioneers", force: :cascade do |t|
     t.integer  "user_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170422220558) do
   end
 
   create_table "contests", force: :cascade do |t|
-    t.string   "contest_name"
+    t.string   "contest_name", null: false
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at",   null: false
@@ -45,13 +45,12 @@ ActiveRecord::Schema.define(version: 20170422220558) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "divisions", force: :cascade do |t|
-    t.string   "division_name"
-    t.integer  "round"
-    t.integer  "contest_id"
+    t.string   "division_name", null: false
+    t.integer  "round",         null: false
+    t.integer  "contest_id",    null: false
     t.string   "status"
-    t.integer  "qsheet_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "judges", force: :cascade do |t|
@@ -71,9 +70,16 @@ ActiveRecord::Schema.define(version: 20170422220558) do
   create_table "questions", force: :cascade do |t|
     t.string   "dataType"
     t.string   "content"
-    t.integer  "qsheet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scoresheets", force: :cascade do |t|
+    t.integer  "auctioneer_id", null: false
+    t.integer  "question_id",   null: false
+    t.string   "score"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
