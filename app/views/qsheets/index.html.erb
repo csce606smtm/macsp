@@ -7,34 +7,29 @@
     <li class='active'><%= link_to 'Questions', qsheets_path %></li>
 </ul>
 
-<h2>Add New Question Sheet</h2>
-
-<button class="btn btn-primary btn-med"><%= link_to 'New Qsheet', new_qsheet_path %></button>
-
-<h2>Listing Qsheets</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Contest</th>
-      <!--<th colspan="3"></th>-->
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @qsheets.each do |qsheet| %>
-      <tr>
-        <td><%= qsheet.contest %></td>
-        <%= @currIndex += 1 %>
-        <td><%= link_to 'Show',qsheet %></td>
-        <td><%= link_to 'Edit', edit_qsheet_path(qsheet) %></td>
-        <!--<td><%#= link_to 'Destroy', qsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-        <td>
-        <%= link_to(qsheets_path, :html => {:class => 'btn btn-default btn-med'}) do %>
-          <span class='glyphicon glyphicon-trash'></span></td>
+<h2>List of Question Sheet</h2>
+<div id="ListQSheet" class="form-group">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Question Sheet</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rounds.each do |round|%>
+         <tr>
+          <td><%= round[:division_name] + " of " + round[:contest_name] + "(round:" + round[:round].to_s + ")" %></td>
+          <td><%= link_to 'Edit', edit_qsheet_path(round[:division_id]) %></td>
+          <!--
+          <td>
+            <%#= link_to(qsheets_path, :html => {:class => 'btn btn-default btn-med'}) do %>
+            <span class='glyphicon glyphicon-trash'></span>
+          </td>
+          -->
+         </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+</div>
+<!--<button class="btn btn-primary btn-med"><%#= link_to 'New Qsheet', new_qsheet_path %></button> -->

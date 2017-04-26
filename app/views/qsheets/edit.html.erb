@@ -1,4 +1,4 @@
-<h1>Editing Qsheet</h1>
+<h1>Editing <%= @curQSheet[:division_name].to_s + " of " + @curQSheet[:contest_name].to_s + "(round: " + @curQSheet[:round].to_s + ")" %> </h1>
 
 <%= render 'form' %>
 

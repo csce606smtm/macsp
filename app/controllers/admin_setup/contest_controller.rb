@@ -21,8 +21,7 @@ class AdminSetup::ContestController < ApplicationController
             did_list.each do |did|
               puts did[:contest_id]
               puts contest[:contest_id]
-              if (did[:contest_id] == contest[:contestid])
-                puts "hi"
+              if (did[:contest_id].to_s == contest[:contestid].to_s)
                 cnt_a = cnt_a + 1
               end
             end

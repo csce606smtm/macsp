@@ -4,8 +4,7 @@ class QsheetsController < ApplicationController
   # GET /qsheets
   # GET /qsheets.json
   def index
-    @qsheets = Qsheet.all
-    
+    @rounds = getRound
     @currIndex = 0
   end
 
@@ -26,6 +25,16 @@ class QsheetsController < ApplicationController
 
   # GET /qsheets/1/edit
   def edit
+    @question = Question.new
+    @qsheet = Qsheet.new
+    @curQSheet = {}
+    getRound.each do |round|
+      if round[:division_id].to_s == params[:id].to_s
+        round[:questions] = getQuestions(params[:id])
+        @curQSheet = round
+      end
+    end
+    puts @curQSheet
   end
 
   # POST /qsheets
@@ -71,11 +80,35 @@ class QsheetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_qsheet
-      @qsheet = Qsheet.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def qsheet_params
       params.require(:qsheet).permit(:contest, :questions_attributes => [:id, :content, :dataType])
     end
+    
+    def getRound
+      rounds = []
+      Division.all.select(:id).each do |div|
+        Contest.joins(:divisions).where('divisions.id' => div.id).pluck_to_hash(:contest_id, :contest_name, :division_name, :round).each do |cfd|
+          round = {}
+          round[:contest_id] = cfd[:contest_id]
+          round[:division_id] = div.id
+          round[:round] = cfd[:round]
+          round[:contest_name] = cfd[:contest_name]
+          round[:division_name] = cfd[:division_name]
+          rounds << round
+        end
+      end
+      return rounds
+    end
+    
+    def getQuestions(division_id)
+      questions = []
+      Qsheet.where(:division_id => division_id).each do |q|
+        question = Question.find_by(:id => q.question_id)
+        questions << {:qType => question.dataType, :qContent => question.content}
+      end
+      return questions
+    end
+   
 end
