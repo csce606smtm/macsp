@@ -20,5 +20,6 @@ Scenario: create a judge account
   And  I fill in "Email" with "sdhpekr@gmail.com"
   And  I fill in "Password" with "1231"
   And  I fill in "Password confirmation" with "1231"
-  And  I press "Register"
+  And  I fill in "Contest" with "Lonestar"
+  And  I press "Register Judge"
   Then I should be on the new judge page
