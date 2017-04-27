@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
-    belongs_to :qsheets
+    has_many :qsheets
     belongs_to :scoresheet
+    #establish_connection :the_database
 end
