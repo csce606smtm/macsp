@@ -9,6 +9,10 @@ Background: users in database
   | email               | password     | password_confirmation    | name          | user_type    |
   | admin1@gmail.com    | 123          | 123                      | Lance         | Admin        |
 
+  Given the following contests exist:
+  | contest_name        |
+  | Lonestar            |
+
 Scenario: create a judge account
   Given I am on the login page
   And  I fill in "Email" with "admin1@gmail.com"
@@ -20,6 +24,6 @@ Scenario: create a judge account
   And  I fill in "Email" with "sdhpekr@gmail.com"
   And  I fill in "Password" with "1231"
   And  I fill in "Password confirmation" with "1231"
-  And  I fill in "Contest" with "Lonestar"
+  And  I select "Lonestar" from "contest[contest_name]"
   And  I press "Register Judge"
   Then I should be on the new judge page

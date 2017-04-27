@@ -4,6 +4,12 @@ Given /^the following users exist:$/ do |data_table|
 	end
 end
 
+Given /^the following contests exist:$/ do |data_table|
+	data_table.hashes.each do |contest|
+		Contest.create!(contest)
+	end
+end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
 	visit path_to(page_name)
 end
@@ -26,6 +32,10 @@ end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
 	fill_in(field, :with => value)
+end
+
+When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
+  select(value, :from => field)
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
