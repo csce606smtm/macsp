@@ -33,7 +33,11 @@ module NavigationHelpers
     when /^the new judge page$/
       
       new_admin_setup_judge_path
+    
+     when /^the new contest page$/
       
+      new_admin_setup_contest_path
+    
     else
     
       begin

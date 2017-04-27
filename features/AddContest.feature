@@ -9,7 +9,7 @@ Background: users in database
   | email               | password     | password_confirmation    | name          | user_type    |
   | admin1@gmail.com    | 123          | 123                      | Lance         | Admin        |
 
-Scenario: add an auctioneer
+Scenario: add a contest
   Given I am on the login page
   And  I fill in "Email" with "admin1@gmail.com"
   And  I fill in "Password" with "123"
@@ -18,8 +18,7 @@ Scenario: add an auctioneer
   And  I follow "Contest"
   Then I should see "Add New Contest"
   And  I should see "Current Contests"
-  And  I fill in "Name" with "Test contest"
-  And  I fill in "Date" with "2017/05/05"
-  And  I fill in "Divisions" with "Rookie:2, Veteran:3"
+  And  I fill in "Contest name" with "Test contest"
+  And  I fill in "Divisions" with "Rookie:2, Veteran:3, Two Words:6"
   And  I press "Submit"
   Then I should see "Successfully added division"
