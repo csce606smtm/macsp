@@ -9,9 +9,6 @@ class AdminSetup::JudgeController < ApplicationController
         @judges = User.joins(:judges).pluck_to_hash(:contest_id)
         #@judges.each do |judge| Contest.where(:id => judge[:contest_id]).contest_name end
         
-       
-        
-        
         @jList  = []
         contest_name = []
         @judges.each do |judge|
@@ -43,15 +40,15 @@ class AdminSetup::JudgeController < ApplicationController
         @new_judge = Judge.new
         @contest = Contest.new
         
-        @new_contest = Contest.find_by(contest_name: params[:contest][:contest_name])
-
+        puts params
+        
         @user.user_type = "Judge"
         @user.bare_password = @user.password
-      
+        
         if @user.save
             flash[:success] = 'Successfully created a Judge'
             @new_judge.user_id = @user.id
-            @new_judge.contest_id = @new_contest.id
+            @new_judge.contest_id = params[:contest][:contest_name]
             @new_judge.save
         else
             flash[:success] = 'Failed to created a Judge'
