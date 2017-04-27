@@ -4,22 +4,34 @@ class QsheetsController < ApplicationController
   # GET /qsheets
   # GET /qsheets.json
   def index
-    @qsheets = Qsheet.all
+    if current_user.user_type == 'Admin'
+      @qsheets = Qsheet.all
+      @contests = Contest.all
+      @divisions = Division.all
+    else 
+      @@contest_id = Contest.find(Judge.find(current_user.id)).id
+      _allDivisions = Division.find_by_contest_id(contest_id)
+      _allDivisions.each do |currDiv|
+        @qsheets = Qsheet.find_by_division_id(currDiv.id)
+      end 
+    end 
+      
     
-    @currIndex = 0
+    # @currIndex = 0
   end
 
   # GET /qsheets/1
   # GET /qsheets/1.json
   def show
-    id = params[:id] # retrieve question ID from URI route
-    @tSheet = Qsheet.find(id).questions
-    @incr = 0
+    @qsheet = Qsheet.find(params[:id]) # retrieve question ID from URI route
+    # puts "About to use tsheet"
+    # @tSheet = "Hello again"
     
   end
 
   # GET /qsheets/new
   def new
+    @contest = Contest.find(params[:id])
     @qsheet = Qsheet.new
     2.times { @qsheet.questions.build }
   end
@@ -36,7 +48,7 @@ class QsheetsController < ApplicationController
     respond_to do |format|
       if @qsheet.save
         format.html { redirect_to @qsheet, notice: 'Qsheet was successfully created.' }
-        format.json { render :show, status: :created, location: @qsheet }
+        format.json { render :show, id: @qsheet.id, status: :created, location: @qsheet }
       else
         format.html { render :new }
         format.json { render json: @qsheet.errors, status: :unprocessable_entity }
@@ -61,9 +73,10 @@ class QsheetsController < ApplicationController
   # DELETE /qsheets/1
   # DELETE /qsheets/1.json
   def destroy
-    @qsheet.destroy
+    @qsheet = Qsheet.find(params[:id])
+    @qsheet.destroy 
     respond_to do |format|
-      format.html { redirect_to qsheets_url, notice: 'Qsheet was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Qsheet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,7 +84,7 @@ class QsheetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_qsheet
-      @qsheet = Qsheet.find(params[:id])
+      # @qsheet = Qsheet.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

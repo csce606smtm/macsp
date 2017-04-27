@@ -1,39 +1,26 @@
-<!--<p id="notice"><%#= notice %></p>-->
+<p id="notice"><%= notice %></p>
+<script>
+  document.getElementById("admin-setup-nav").className = "active";
+</script>
 
-<p>
-  <strong>Question Sheet created for contest ________ !</strong>
-</p>
+<ul class="nav nav-tabs">
+    <li><%= link_to 'Contest', new_admin_setup_contest_path %></li>
+    <li><%= link_to 'Judge', new_admin_setup_judge_path %></li>
+    <li><%= link_to 'Auctioneer', new_admin_setup_auctioneer_path %></li>
+    <li class='active'><%= link_to 'Questions', qsheets_path %></li>
+</ul>
 
-<div class="container">
-  <h2>Questions</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class='col-sm-1'>Number</th>
-        <th class='col-sm-4'>Content</th>
-        <th class='col-sm-1'>Delete</th>
-      </tr>
-    </thead>
-      <tbody>
-      <% @tSheet.each do |question|%>
-      <tr>
-        <td><%= @incr.to_s %></td>
-        <td><%= question.content %></td>
-        <!--<td><%#=  link_to 'Delete', qsheet_path(question), :method => :delete %></td>-->
-        <td>
-          <%= link_to(qsheet_path(question), :method => :delete, :html => {:class => 'btn btn-default btn-med'}) do %>
-          <span class='glyphicon glyphicon-trash'></span></td>
-          <% end %>
-        <%= @incr += 1 %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%= link_to '< Back to QSheets', qsheets_path %>
+
+<h2><small>Viewing QSheet for </small>
+  <%= @qsheet.id %>
+  <% @corrDivision = Division.find(@qsheet.division_id) %>
   
-</p>
-
-<%= link_to 'Edit', edit_qsheet_path(@qsheet) %> |
-<%= link_to 'Back', qsheets_path %>
+  <%= @corrContest = Contest.find(@corrDivision.contest_id).contest_name %>
+  <%= @corrDivision.division_name %>
+  Round 
+  <%= @corrDivision.round %>
+</h2>
+<%= render 'showQuestion' %>
 
 

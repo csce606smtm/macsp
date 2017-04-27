@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20170425191343) do
 
   create_table "qsheets", force: :cascade do |t|
     t.integer  "division_id"
-    t.integer  "question_id"
+    t.integer  "question_id", array: true, default: []
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170425191343) do
   create_table "questions", force: :cascade do |t|
     t.string   "dataType"
     t.string   "content"
+    t.integer  "qsheet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

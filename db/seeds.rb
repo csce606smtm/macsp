@@ -56,17 +56,17 @@ users = [
     ]
 
 users.each do |user|
-    User.create(user)
+    User.create!(user)
 end
 
 contests = [
  {:id => 1,
-  :contest_name => "LoneStart 2017"},
+  :contest_name => "LoneStar 2017"},
  {:id => 2,
   :contest_name => "Texas 2016"},
  ]
 contests.each do |contest|
-     Contest.create(contest)
+     Contest.create!(contest)
 end
 
 divisions = [
@@ -101,7 +101,7 @@ divisions = [
     ]
 
 divisions.each do |division|
-    Division.create(division)
+    Division.create!(division)
 end
 
 judges = [
@@ -117,14 +117,14 @@ judges = [
  ]
  
  judges.each do |judge|
-  Judge.create(judge)
+  Judge.create!(judge)
  end
  
  
  auctioneers = [
   {:id => 1,
   :user_id => 5, 
-  :division_id =>1},
+  :division_id => 1},
   {:id => 2,
   :user_id => 6,
   :division_id => 2},
@@ -133,93 +133,82 @@ judges = [
   :division_id => 4},
   ]
  auctioneers.each do |auctioneer|
-  Auctioneer.create(auctioneer)
+  Auctioneer.create!(auctioneer)
  end
  
  questions = [
   {:id => 1,
+  :qsheet_id => 1,
   :dataType => "int",
   :content => "question1"},
   {:id => 2,
+  :qsheet_id => 1,
   :dataType => "string",
-  :content => "question3"},
+  :content => "question2"},
   {:id => 3,
+  :qsheet_id => 1,
   :dataType => "int",
   :content => "question3"},
   {:id => 4,
+  :qsheet_id => 1,
   :dataType => "string",
   :content => "question4"},
   {:id => 5,
+  :qsheet_id => 1,
   :dataType => "int",
   :content => "question5"},
   {:id => 6,
+  :qsheet_id => 1,
   :dataType => "string",
   :content => "question6"},
   {:id => 7,
+  :qsheet_id => 2,
   :dataType => "int",
   :content => "question7"},
   {:id => 8,
+  :qsheet_id => 2,
   :dataType => "string",
   :content => "question8"},
   {:id => 9,
+  :qsheet_id => 2,
   :dataType => "int",
   :content => "question9"},
   {:id => 10,
+  :qsheet_id => 3,
   :dataType => "string",
   :content => "question10"},
   {:id => 11,
+  :qsheet_id => 4,
   :dataType => "int",
   :content => "question11"},
   ]
   
   
   questions.each do |q|
-   Question.create(q)
+   Question.create!(q)
   end
   
   
 qsheets = [
  {:id => 1,
-  :division_id => 1,
-  :question_id => 1},
+  :division_id => 1},
  {:id => 2,
-  :division_id => 1,
-  :question_id => 2},
+  :division_id => 2},
  {:id => 3,
-  :division_id => 1,
-  :question_id => 3},
+  :division_id => 3},
  {:id => 4,
-  :division_id => 1,
-  :question_id => 4},
+  :division_id => 4},
  {:id => 5,
-  :division_id => 1,
-  :question_id => 5},
+  :division_id => 5},
  {:id => 6,
-  :division_id => 1,
-  :question_id => 6},
+  :division_id => 6},
  {:id => 7,
-  :division_id => 2,
-  :question_id => 1},
- {:id => 8,
-  :division_id => 2,
-  :question_id => 2},
- {:id => 9,
-  :division_id => 2,
-  :question_id => 3},
- {:id => 10,
-  :division_id => 2,
-  :question_id => 4},
- {:id => 11,
-  :division_id => 2,
-  :question_id => 5},
- {:id => 12,
-  :division_id => 2,
-  :question_id => 6},
+  :division_id => 7}
  ]
  
  
  qsheets.each do |qsh|
-  Qsheet.create(qsh)
+  Qsheet.create!(qsh)
  end
  
  
@@ -232,6 +221,8 @@ qsheets = [
   ]
   
   
-  scoresheets.each do |sh|
-   Scoresheet.create(sh)
-  end
+ scoresheets.each do |sh|
+  Scoresheet.create!(sh)
+ end
+ 
+ 
