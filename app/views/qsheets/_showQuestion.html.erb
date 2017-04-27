@@ -1,0 +1,25 @@
+<% @counter = 0 %>
+<% @questionIDArray = Question.where(qsheet_id: @qsheet.id).pluck(:id) %>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Integer or String?</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+    <% @questionIDArray.each do |id| %>
+    <% @currQuestion = Question.find(id) %>
+        <tr>
+            <td><%= @counter += 1 %></td>
+            <td><%= @currQuestion.dataType%></td>
+            <td><%= @currQuestion.content %></td>
+        </tr>
+    <% end %> 
+    </tbody>
+</table>
+
+
+ 

@@ -32,6 +32,7 @@ class AdminSetup::ContestController < ApplicationController
     end
 
     def index
+      @contests = Contest.all
     end
     def create
         #@contest = Contest.find_by :params[:contest][:contest_name]

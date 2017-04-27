@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
+<script>
+  document.getElementById("admin-setup-nav").className = "active";
+</script>
 
 <ul class="nav nav-tabs">
     <li><%= link_to 'Contest', new_admin_setup_contest_path %></li>
@@ -7,34 +10,43 @@
     <li class='active'><%= link_to 'Questions', qsheets_path %></li>
 </ul>
 
-<h2>Add New Question Sheet</h2>
 
-<button class="btn btn-primary btn-med"><%= link_to 'New Qsheet', new_qsheet_path %></button>
-
-<h2>Listing Qsheets</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Contest</th>
-      <!--<th colspan="3"></th>-->
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @qsheets.each do |qsheet| %>
+<% @contests.each do |contest| %>
+<br>
+  <h2><%= contest.contest_name%> Contest
+    <button class="btn btn-link btn-med">
+      <%= link_to '+ Add New QSheet', new_qsheet_path(:id => contest.id) %>
+    </button>
+  </h2>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= qsheet.contest %></td>
-        <%= @currIndex += 1 %>
-        <td><%= link_to 'Show',qsheet %></td>
-        <td><%= link_to 'Edit', edit_qsheet_path(qsheet) %></td>
-        <!--<td><%#= link_to 'Destroy', qsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-        <td>
-        <%= link_to(qsheets_path, :html => {:class => 'btn btn-default btn-med'}) do %>
-          <span class='glyphicon glyphicon-trash'></span></td>
-        <% end %>
+        <th>Division</th>
+        <th>Round</th>
+        <th>View</th>
+        <th>Delete</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    
+    <tbody>
+      <!--we are looking at a list of all qsheets
+      every round has 1 qsheet
+      fewere divisions than rounds
+      for each division, if its contest id 
+      matches the current contest id, we are good.-->
+      <% @divisions.each do |division| %>
+      <%   if division.contest_id == contest.id %> 
+            <tr>
+              <td><%= division.division_name %></td>
+              <td><%= division.round %></td>
+              <td><%= link_to 'Show', qsheets_show_path(:id => division.id) %></td>
+              <td><%= link_to 'Destroy', qsheet_path(:id => division.id), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
+            </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
 

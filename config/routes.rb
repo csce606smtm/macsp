@@ -24,9 +24,11 @@ Rails.application.routes.draw do
   
   resources :admin, only: [:index, :judge, :auctioneer, :contest, :new, :create]
   resources :judge, only: [:index, :score]
-  resources :qsheets, only: [:index, :edit, :new, :show]
+  # resources :qsheets, only: [:index, :edit, :new, :show, :destroy]
   
   get 'judge_score' => 'judge#score'
+  
+  get 'qsheets_show' => 'qsheets#show'
 
   
   get '/log_in', to: 'sessions#new', as: :log_in
