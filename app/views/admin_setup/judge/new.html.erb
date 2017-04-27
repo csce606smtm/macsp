@@ -47,11 +47,11 @@
     
     <div class="form-group">
       <label class="control-label col-sm-2">
-        <%= f.label :Contest %>
+        <%= f.label :contest %>
       </label>
       <div class="col-sm-10">
         <%= fields_for @contest do |contest| %>
-          <%= contest.text_field :contest_name, class: 'form-control', placeholder: 'Enter Contest', required: true %> 
+          <%= contest.collection_select :contest_name, Contest.order(:contest_name), :id, :contest_name, include_blank: false %> 
         <% end %>
       </div>
     </div>

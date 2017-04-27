@@ -21,7 +21,7 @@ class AdminSetup::ContestController < ApplicationController
             did_list.each do |did|
               puts did[:contest_id]
               puts contest[:contest_id]
-              if (did[:contest_id] == contest[:contestid])
+              if (did[:contest_id] == contest[:contest_id])
                 puts "hi"
                 cnt_a = cnt_a + 1
               end
@@ -110,6 +110,10 @@ class DivisionParser
       return false
     end
     
+    if @input_string.count(":") == 0
+      return false
+    end
+    
     num_rounds = 0
     @input_string.each_char do |z|
       if z.is_number?
@@ -171,6 +175,7 @@ class DivisionParser
       
       i += 1
     end
+    
     return true
   end
   
