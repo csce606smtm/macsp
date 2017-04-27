@@ -109,6 +109,10 @@ class DivisionParser
       return false
     end
     
+    if @input_string.count(":") == 0
+      return false
+    end
+    
     num_rounds = 0
     @input_string.each_char do |z|
       if z.is_number?
@@ -170,6 +174,7 @@ class DivisionParser
       
       i += 1
     end
+    
     return true
   end
   
