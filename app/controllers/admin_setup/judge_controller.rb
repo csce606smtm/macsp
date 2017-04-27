@@ -14,13 +14,13 @@ class AdminSetup::JudgeController < ApplicationController
         
         @jList  = []
         contest_name = []
-        mem = {}
         @judges.each do |judge|
             contest_name << Contest.find_by(:id => judge[:contest_id]).contest_name
         end
         
         i = 0
         @member.each do |member|
+            mem = {}
             mem[:id] = member[:id]
             mem[:name] = member[:name]
             mem[:email] = member[:email]
