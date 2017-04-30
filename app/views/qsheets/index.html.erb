@@ -15,7 +15,7 @@
 <br>
   <h2><%= contest.contest_name%> Contest
     <button class="btn btn-link btn-med">
-      <%= link_to '+ Add New QSheet', new_qsheet_path(:id => contest.id) %>
+      <%#= link_to '+ Add New QSheet', new_qsheet_path(:id => contest.id) %>
     </button>
   </h2>
   <table class="table table-striped">
@@ -24,7 +24,6 @@
         <th>Division</th>
         <th>Round</th>
         <th>View</th>
-        <th>Delete</th>
       </tr>
     </thead>
     
@@ -40,7 +39,6 @@
               <td><%= division.division_name %></td>
               <td><%= division.round %></td>
               <td><%= link_to 'Show', qsheets_show_path(:id => division.id) %></td>
-              <td><%= link_to 'Destroy', qsheet_path(:id => division.id), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
             </tr>
         <% end %>
       <% end %>
