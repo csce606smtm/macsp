@@ -6,6 +6,7 @@
             <th>Number</th>
             <th>Integer or String?</th>
             <th>Question</th>
+            <th>Delete</th>
         </tr>
     </thead>
     
@@ -16,6 +17,7 @@
             <td><%= @counter += 1 %></td>
             <td><%= @currQuestion.dataType%></td>
             <td><%= @currQuestion.content %></td>
+            <td><%= link_to 'Delete', qsheet_path(:id => id), data: {:confirm => 'Are you sure?' + id.to_s}, :method => :delete %></td>
         </tr>
     <% end %> 
     </tbody>

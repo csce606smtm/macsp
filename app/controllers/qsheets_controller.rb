@@ -38,6 +38,9 @@ class QsheetsController < ApplicationController
 
   # GET /qsheets/1/edit
   def edit
+    @qsheet = Qsheet.find_by(:id => params[:id])
+    @division = Division.find_by(:id => @qsheet.division_id)
+    @contest = Contest.find_by(:id => @division.contest_id)
   end
 
   # POST /qsheets
@@ -59,8 +62,9 @@ class QsheetsController < ApplicationController
   # PATCH/PUT /qsheets/1
   # PATCH/PUT /qsheets/1.json
   def update
+    @qsheet = Qsheet.find_by(:division_id => params[:id])
     respond_to do |format|
-      if @qsheet.update(qsheet_params)
+      if save_questions(params[:qsheet][:questions_attributes], @qsheet.division_id)
         format.html { redirect_to @qsheet, notice: 'Qsheet was successfully updated.' }
         format.json { render :show, status: :ok, location: @qsheet }
       else
@@ -73,8 +77,8 @@ class QsheetsController < ApplicationController
   # DELETE /qsheets/1
   # DELETE /qsheets/1.json
   def destroy
-    @qsheet = Qsheet.find(params[:id])
-    @qsheet.destroy 
+    @question = Question.find(params[:id])
+    @question.destroy 
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Qsheet was successfully destroyed.' }
       format.json { head :no_content }
@@ -90,5 +94,18 @@ class QsheetsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def qsheet_params
       params.require(:qsheet).permit(:contest, :questions_attributes => [:id, :content, :dataType])
+    end
+
+    def save_questions(qs, division_id)
+      qs.each do |q|
+        question = Question.new
+        question.dataType = q[1][:dataType]
+        question.content = q[1][:content]
+        question.qsheet_id= Qsheet.find_by(:division_id => division_id).id
+        if !question.save()
+          return false
+        end
+      end
+      return true
     end
 end

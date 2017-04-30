@@ -2,8 +2,9 @@
 <%= form_for(@qsheet, :html => {:class => 'form-horizontal'}) do |f| %>
 
 
+<!--
   <div class="form-group">
-      <%= f.label :division, class: 'control-label col-sm-2' %>
+      <%#= f.label :division, class: 'control-label col-sm-2' %>
     <div class="row">
     <div class="col-xs-6 col-sm-3">
         <a class="btn btn-primary btn-select">
@@ -11,15 +12,16 @@
             <span class="btn-select-value">Select an Item</span>
             <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
             <ul>
-                <% divisions = Division.where(contest_id: @contest.id) %>
-                <% divisions.each do |division| %>
-                    <li><%= division.division_name + ": " + division.round.to_s %></li>
-                <% end %> 
+                <% #divisions = Division.where(contest_id: @contest.id) %>
+                <% #divisions.each do |division| %>
+                    <li><%#= division.division_name + ": " + division.round.to_s %></li>
+                <% #end %> 
             </ul>
         </a>
     </div>
 </div>
   </div>
+ -->
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
