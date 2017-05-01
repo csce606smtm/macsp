@@ -12,7 +12,13 @@ class AdminSetup::JudgeController < ApplicationController
         @jList  = []
         contest_name = []
         @judges.each do |judge|
-            contest_name << Contest.find_by(:id => judge[:contest_id]).contest_name
+            @c = Contest.find_by(:id => judge[:contest_id])
+            
+            if @c != nil
+                contest_name << @c.contest_name
+            else
+                contest_name << "-"
+            end
         end
         
         i = 0
@@ -64,6 +70,14 @@ class AdminSetup::JudgeController < ApplicationController
         @new_judge.destroy
         
         flash[:notice] = "Judge #{@judge.name} deleted"
+        redirect_to new_admin_setup_judge_path
+    end
+    
+    def show
+        puts "print!!"
+        puts params
+        
+        
         redirect_to new_admin_setup_judge_path
     end
 

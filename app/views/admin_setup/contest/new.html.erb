@@ -66,7 +66,7 @@
         <th>Divisions:Rounds</th>
         <th>Number of Judges</th>
         <th>Number of Contestants</th>
-        <th>Edit or Delete</th>
+        <th>Delete</th>
       </tr>
     </thead>
     
@@ -78,8 +78,7 @@
       <td> <%= list[:round] %></td>
       <td> <%= list[:num_judge] %></td>
       <td> <%= list[:num_auctioneer] %></td>
-      <td> <%= "--" %></td>
-      <td> <%= "--" %></td>
+      <td> <%= link_to 'Delete', admin_setup_contest_path(list), :method => :delete %> </td>
      </tr>
     <% end %>
     </tbody>

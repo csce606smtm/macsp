@@ -72,7 +72,7 @@
         <th>Email</th>
         <th>Password</th>
         <th>Contest</th>
-        <th>Edit/Delete</th>
+        <th>Delete</th>
       </tr>
     </thead>
     
@@ -82,8 +82,21 @@
         <td><%= value[:name] %></td>
         <td><%= value[:email] %></td>
         <td><%= value[:bare_password] %></td>
-        <td><%= value[:contest_name] %></td>
-        <td><%=  link_to 'Delete', admin_setup_judge_path(value), :method => :delete %></td>
+        <td>
+        
+        <%= fields_for @contest do |contest| %>
+          <% if Contest.find_by(contest_name: value[:contest_name]) != nil %>
+            <%= contest.collection_select :contest_name, Contest.order(:contest_name), :id, :contest_name, :include_blank => 'Not assigned', :selected => Contest.find_by(contest_name: value[:contest_name]).id %>
+            <%= link_to 'Reassign', admin_setup_judge_path(contest), :method => :get %>
+          <% else %>
+            <%= contest.collection_select :contest_name, Contest.order(:contest_name), :id, :contest_name, :include_blank => 'Not assigned', :selected => nil %>
+            <%= link_to 'Reassign', admin_setup_judge_path(value), :method => :get %>
+          <% end %>
+        <% end %>
+        
+        </td>
+        
+        <td><%= link_to 'Delete', admin_setup_judge_path(value), :method => :delete %></td>
 
       </tr>
       <% end %>

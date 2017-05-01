@@ -5,35 +5,52 @@ class AdminSetup::ContestController < ApplicationController
         @contest = Contest.new
         @division = Division.new
         
-        @cList = Contest.joins(:divisions).pluck_to_hash(:contest_id, :contest_name, :id, :division_name, :round)
-        @cList.each do |contest|
-            cnt = 0
-            cid_list = User.joins(:judges).pluck_to_hash(:contest_id) 
-            cid_list.each do |cid|
-              if (cid[:contest_id] == contest[:contest_id])
-                cnt = cnt + 1
-              end
-            end
-            contest[:num_judge] = cnt
+        @cList  = []
+        
+        @contest_all = Contest.all
+        @division_all = Division.all
+        
+        @division_all.each do |division|
+          @contest_all.each do |contest|
             
-            cnt_a = 0
-            did_list = Division.joins(:auctioneers).pluck_to_hash(:contest_id, :user_id, :division_id) 
-            did_list.each do |did|
-              puts did[:contest_id]
-              puts contest[:contest_id]
-              if (did[:contest_id] == contest[:contest_id])
-                puts "hi"
-                cnt_a = cnt_a + 1
+            if division.contest_id == contest.id
+              cnt = 0
+              cid_list = User.joins(:judges).pluck_to_hash(:contest_id) 
+              
+              cid_list.each do |cid|
+                if (cid[:contest_id] == contest.id)
+                  cnt = cnt + 1
+                end
               end
+              
+              cnt_a = 0
+              did_list = Division.joins(:auctioneers).pluck_to_hash(:contest_id, :user_id, :division_id) 
+              
+              did_list.each do |did|
+                if (did[:contest_id] == contest.id)
+                  cnt_a = cnt_a + 1
+                end
+              end
+              
+              data = {}
+              data[:id] = contest.id
+              data[:division_id] = division.id
+              data[:contest_name] = contest.contest_name
+              data[:division_name] = division.division_name
+              data[:round] = division.round
+              data[:num_judge] = cnt
+              data[:num_auctioneer] = cnt_a
+            
+              @cList << data
             end
-            puts cnt_a
-            contest[:num_auctioneer] = cnt_a
+          end
         end
     end
 
     def index
       @contests = Contest.all
     end
+    
     def create
         #@contest = Contest.find_by :params[:contest][:contest_name]
         
@@ -57,6 +74,8 @@ class AdminSetup::ContestController < ApplicationController
                                      :contest_id => @contest.id)
             if @division.save
                 flash[:success] = 'Successfully added division'
+                
+                Qsheet.create!(:division_id => @division.id)
             end
         end
         
@@ -64,9 +83,38 @@ class AdminSetup::ContestController < ApplicationController
     end
 
     def destroy
+        @division = Division.find params[:division_id]
+        #@new_judge = Judge.find_by(user_id: @judge.id)
         
+        @temp_contest_id = @division.contest_id
+        @temp_division_id = @division.id
+        
+        @division.destroy
+        #@new_judge.destroy
+        
+        @temp = Division.find_by(contest_id: @temp_contest_id)
+        
+        if @temp == nil
+          @contest = Contest.find_by(id: @temp_contest_id)
+          @contest.destroy
+        end
+        
+        @temp_qsheet = Qsheet.find_by(division_id: @temp_division_id)
+        
+        @temp_questions = Question.find_by(qsheet_id: @temp_qsheet.id)
+        
+        if @temp_questions != nil
+          @temp_questions.destroy
+        end
+        
+        if @temp_qsheet != nil
+          @temp_qsheet.destroy
+        end
+        
+        flash[:notice] = "Division #{@division.division_name} deleted"
+        redirect_to new_admin_setup_contest_path
     end
-
+  
   private
 
     def contest_params

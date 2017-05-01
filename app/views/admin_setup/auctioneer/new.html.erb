@@ -32,39 +32,14 @@
         <%= f.email_field :email, class: 'form-control', placeholder: 'Enter email', required: true %>
       </div>
     </div>
-     
-     <div class="form-group">
-      <label class="control-label col-sm-2"><%= f.label :password %></label>
-      <div class="col-sm-10"> 
-        <%= f.password_field :password, class: 'form-control', placeholder: 'Enter password', required: true %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label class="control-label col-sm-2">
-        <%= f.label :password_confirmation %>
-      </label>
-      <div class="col-sm-10">
-        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm password', required: true %>
-      </div>
-    </div>
     
     <div class="form-group">  
-      <label class="control-label col-sm-2">Select level:
+      <label class="control-label col-sm-2"> Division
       </label>
-      <div class="col-sm-offset-2 col-sm-10">
-          <label class="checkbox-inline">
-            <%#= f.label :level %>
-            <input type="checkbox" value="">Rookie
-          </label>
-          <label class="checkbox-inline">
-            <%#= f.label :level %>
-            <input type="checkbox" value="">Newbie
-          </label>
-          <label class="checkbox-inline">
-            <%#= f.label :level %>
-            <input type="checkbox" value="">Texan
-          </label>
+      <div class="col-sm-10">
+          <%= fields_for @division do |division| %>
+            <%= division.collection_select :division_name, Division.all, :id, :division_name, include_blank: false %> 
+          <% end %>
       </div>
     </div>
     
@@ -83,20 +58,18 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Class</th>
         <th>Email</th>
-        <th>Score Sheet</th>
-        <th>Edit/Delete</th>
+        <th>Contest</th>
+        <th>Delete</th>
       </tr>
     </thead>
     
     <tbody>
-      <% @member.each do |value|%>
+      <% @aList.each do |value|%>
       <tr>
-        <td><%= value.name %></td>
-        <td><%#= value.level %></td>
-        <td><%= value.email %></td>
-        <td><%#= value.level %></td>
+        <td><%= value[:name] %></td>
+        <td><%= value[:email] %></td>
+        <td><%= value[:contest_name] %> <%= value[:division_name] %> <%= value[:round] %></td>
         <td><%=  link_to 'Delete', admin_setup_auctioneer_path(value), :method => :delete %></td>
 
       </tr>
