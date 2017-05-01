@@ -7,32 +7,25 @@
   <%= link_to 'Back to list', judge_index_path %>
 </button>
 
-<h2>Scoring ______ in contest: </h2>
+<h3>Scoring: <bold><%= User.find(@scoringAuc.user_id).name %> </bold></h3>
+<h3><small>Contest: <%= @corrContest.contest_name %></small></h3>
+<h3><small>Division: <%= Division.find(@scoringAuc.division_id).division_name %></small></h3>
+<h3><small>Round: <%= Division.find(@scoringAuc.division_id).round %></small></h3>
 
 <div id='scoresheet'>
 <form class="form-horizontal">
-  <div class="form-group">
-    <label for="question1" class="col-sm-2 control-label">Question 1</label>
-    <div class="col-sm-5">
-      <input class="form-control" placeholder="0-10">
+  <% count = 1 %> 
+  <% @questions.each do |question| %> 
+    <div class="form-group">
+      <label class="col-sm-2 control-label">
+        <%= question.content %>
+      </label>
+      <div class="col-sm-5">
+        <input class="form-control">
+      </div>
     </div>
-  </div>
-  
-  <div class="form-group">
-    <label for="question2" class="col-sm-2 control-label">Question 2</label>
-    <div class="col-sm-5">
-      <input class="form-control" placeholder="Explain">
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Question 3</label>
-    <div class='col-sm-10'>
-        <input type="checkbox" value="option1">   1   </input>
-        <input type="checkbox" value="option2">   2   </input>
-        <input type="checkbox" value="option3">   3   </input>
-    </div>
-  </div>
+    <% count += 1 %> 
+  <% end %> 
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

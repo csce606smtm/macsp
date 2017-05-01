@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170425191343) do
 
   create_table "scoresheets", force: :cascade do |t|
     t.integer  "auctioneer_id", null: false
-    t.integer  "question_id",   null: false
+    t.integer  "qsheet_id",   null: false
     t.string   "score"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

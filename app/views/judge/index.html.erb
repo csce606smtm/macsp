@@ -3,49 +3,31 @@
 </script>
 
 <div class="container">
-<h2>Select a contest to view contestants</h2>
-<!--<div style="right:-240px;"> <h5>(If no contest yet exists head over to the setup tab and create one!)</h5> </div>-->
+<h3><%= current_user.name %> Contestants: </h3>
+<h3>Your Contest: <%= Contest.find(@currJudge.contest_id).contest_name %></h3>
+<br>
 
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <a class="btn btn-primary btn-select">
-            <input type="hidden" class="btn-select-input" id="" name="" value="" />
-            <span class="btn-select-value">Select an Item</span>
-            <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-            <ul>
-                <li class="selected">Lonestar Auction 2017</li>
-                <li>Texas Auctioneers 2017</li>
-                <li>Auction Extradonaire Winter Special</li>
-            </ul>
-        </a>
-    </div>
-</div>
-
+<h4>Auctioneers</h4>
 <div class="container" id="contestantDiv">
-  <h2>Contestants</h2>
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Name</th>
+        <th>Division</th>
+        <th>Round</th>
         <th>Link to scoresheet</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Avery Kelos</td>
-        <td>
-            <%= link_to 'Scoresheet', judge_score_path %>
-            <!--<%#=  link_to 'Score', insert_path_here, :method => :score %>-->
-        </td>
-      </tr>
-      <tr>
-        <td>Popi Junte</td>
-        <td>booYah12_12</td>
-      </tr>
-      <tr>
-        <td>Kurt Vone</td>
-        <td>shrimpSmoothies</td>
-      </tr>
+      <% @aucList.each do |auc| %>
+        <tr>
+          <td><%= User.find(auc.user_id).name %></td>
+          <td><%= Division.find(auc.division_id).division_name %></td>
+          <td><%= Division.find(auc.division_id).round %></td>
+          <td><%= link_to 'Scoresheet', judge_score_path(:auc => auc.id) %></td>
+        </tr>
+      <% end %> 
+      
     </tbody>
   </table>
 </div>

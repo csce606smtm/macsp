@@ -44,6 +44,7 @@ class QsheetsController < ApplicationController
   # POST /qsheets.json
   def create
     @qsheet = Qsheet.new(qsheet_params)
+    flash[:notice] = qsheet_params
     #@contests = Contest.find(1)
     respond_to do |format|
       if @qsheet.save
@@ -78,6 +79,7 @@ class QsheetsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Qsheet was successfully destroyed.' }
       format.json { head :no_content }
+      format.js { render :nothing => true }
     end
   end
 
