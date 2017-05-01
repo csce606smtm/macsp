@@ -39,20 +39,6 @@ users = [
      :user_type =>"Auctioneer",
      :bare_password => "123"
     }, 
-    {:id => 6,
-     :email => 'auctioneer2@gmail.com',
-     :password => '123',
-     :name => 'Aaron',
-     :user_type =>"Auctioneer",
-     :bare_password => "123"
-    }, 
-    {:id => 7,
-     :email => 'auctioneer3@gmail.com',
-     :password => '123',
-     :name => 'Hannah',
-     :user_type =>"Auctioneer",
-     :bare_password => "123"
-    }, 
     ]
 
 users.each do |user|
@@ -86,18 +72,6 @@ divisions = [
      :contest_id => 2, 
      :division_name => "rookie",
      :round => 1}, 
-    {:id => 5,
-     :contest_id => 2, 
-     :division_name => "rookie",
-     :round => 2}, 
-    {:id => 6,
-     :contest_id => 2, 
-     :division_name => "veteran",
-     :round => 1}, 
-    {:id => 7,
-     :contest_id => 2, 
-     :division_name => "champion",
-     :round => 1}, 
     ]
 
 divisions.each do |division|
@@ -109,9 +83,12 @@ judges = [
   :user_id => 2,
   :contest_id => 1},
  {:id => 2,
+  :user_id => 2,
+  :contest_id => 2},
+ {:id => 3,
   :user_id => 3,
   :contest_id => 2},
-  {:id => 3,
+  {:id => 4,
   :user_id => 4,
   :contest_id => 2},
  ]
@@ -125,12 +102,6 @@ judges = [
   {:id => 1,
   :user_id => 5, 
   :division_id => 1},
-  {:id => 2,
-  :user_id => 6,
-  :division_id => 2},
-  {:id => 3,
-  :user_id => 7,
-  :division_id => 4},
   ]
  auctioneers.each do |auctioneer|
   Auctioneer.create!(auctioneer)
@@ -139,48 +110,20 @@ judges = [
  questions = [
   {:id => 1,
   :qsheet_id => 1,
-  :dataType => "int",
-  :content => "question1"},
+  :dataType => "I",
+  :content => "test questions 1"},
   {:id => 2,
-  :qsheet_id => 1,
-  :dataType => "string",
-  :content => "question2"},
+  :qsheet_id => 2,
+  :dataType => "I",
+  :content => "test questions 2"},
   {:id => 3,
-  :qsheet_id => 1,
-  :dataType => "int",
-  :content => "question3"},
-  {:id => 4,
-  :qsheet_id => 1,
-  :dataType => "string",
-  :content => "question4"},
-  {:id => 5,
-  :qsheet_id => 1,
-  :dataType => "int",
-  :content => "question5"},
-  {:id => 6,
-  :qsheet_id => 1,
-  :dataType => "string",
-  :content => "question6"},
-  {:id => 7,
-  :qsheet_id => 2,
-  :dataType => "int",
-  :content => "question7"},
-  {:id => 8,
-  :qsheet_id => 2,
-  :dataType => "string",
-  :content => "question8"},
-  {:id => 9,
-  :qsheet_id => 2,
-  :dataType => "int",
-  :content => "question9"},
-  {:id => 10,
   :qsheet_id => 3,
-  :dataType => "string",
-  :content => "question10"},
-  {:id => 11,
+  :dataType => "I",
+  :content => "test question 3"},
+  {:id => 4,
   :qsheet_id => 4,
-  :dataType => "int",
-  :content => "question11"},
+  :dataType => "S",
+  :content => "test question 4"},
   ]
   
   
@@ -198,12 +141,6 @@ qsheets = [
   :division_id => 3},
  {:id => 4,
   :division_id => 4},
- {:id => 5,
-  :division_id => 5},
- {:id => 6,
-  :division_id => 6},
- {:id => 7,
-  :division_id => 7}
  ]
  
  
@@ -216,8 +153,16 @@ qsheets = [
  scoresheets = [
   {:id => 1,
   :auctioneer_id => 1,
+  :question_id => 1,
+  :score => "empty"},
+  {:id => 2,
+  :auctioneer_id => 2,
   :question_id => 2,
-  :score => "10"},
+  :score => "empty"},
+  {:id => 3,
+  :auctioneer_id => 3,
+  :question_id => 4,
+  :score => "empty"},
   ]
   
   

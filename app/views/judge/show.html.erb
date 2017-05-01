@@ -1,0 +1,24 @@
+<script>
+    document.getElementById("judge-nav").className = "active";
+</script>
+
+  <h2> Auctioneers of <%= @contest.contest_name%> Contest </h2>
+  <h3> Division: <%= @division.division_name %></h3>
+  <h3> Round: <%= @division.round %></h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Judge</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user[:name] %></td>
+            <td> <%= link_to 'Go to judge page', edit_judge_path(:id => user[:auc_id]) %> </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>

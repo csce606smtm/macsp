@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   get 'admin_contest' => 'admin#contest'
   
   resources :admin, only: [:index, :judge, :auctioneer, :contest, :new, :create]
-  resources :judge, only: [:index, :score]
+  resources :judge, only: [:index, :edit, :update, :show]
   # resources :qsheets, only: [:index, :edit, :new, :show, :destroy]
-  
+
   get 'judge_score' => 'judge#score'
   
   get 'qsheets_show' => 'qsheets#show'

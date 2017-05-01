@@ -7,8 +7,12 @@
   <%= link_to 'Back to list', judge_index_path %>
 </button>
 
-<h2>Scoring ______ in contest: </h2>
+<h2>Scoring <%= @user.name %></h2>
+<h3>Contest: <%= @contest.contest_name %></h3>
+<h3>Division: <%= @div.division_name %></h3>
+<h3>Round: <%= @div.round %></h3>
 
+<!--
 <div id='scoresheet'>
 <form class="form-horizontal">
   <div class="form-group">
@@ -40,12 +44,35 @@
       <span id="helpBlock" class="help-block">Note that once you submit,
       you come back to it again!</span>
     </div>
-    
   </div>
-  
-  
 </form>
 </div>
+-->
 
-
-
+<div id='scoresheet'>
+<% qidx = 1 %>
+<%= form_for :judges, :url =>  judge_path(current_user), :html => { :method => :put }  do %>
+  <%#= render 'shared/errors', object: @scores%>
+  <% @scores.each do |score| %>
+  <% @qs.each do |q| %>
+      <% if q.id == score[0].question_id && @auc.id == score[0].auctioneer_id %>
+        <%= fields_for "output[]",score[0] do |score_fields| %>
+        <div class="form-group">
+          <label > Question <%= qidx %>(type: <%= q.dataType%> ): <%= q.content %></label>
+          <% qidx = qidx + 1 %>
+        </div>
+        <div class="form-group">
+          <%= score_fields.text_field :score, class: 'form-control', required: true %>
+        </div>
+        <%end%>
+      <%end%>
+  <% end %>
+  <% end %>
+    
+  <div class="form-group"> 
+    <input type="submit" value='Submit' class="btn btn-primary btn-med">
+    <span id="helpBlock" class="help-block">Note that once you submit,
+    you come back to it again!</span>
+  </div>
+<% end %>
+</div>
