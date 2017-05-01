@@ -78,6 +78,10 @@ class QsheetsController < ApplicationController
   # DELETE /qsheets/1.json
   def destroy
     @question = Question.find(params[:id])
+    @scores = Scoresheet.where(:question_id => @question.id)
+    @scores.each do |s|
+      s.destroy
+    end
     @question.destroy 
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Qsheet was successfully destroyed.' }
@@ -104,6 +108,16 @@ class QsheetsController < ApplicationController
         question.qsheet_id= Qsheet.find_by(:division_id => division_id).id
         if !question.save()
           return false
+        end
+
+        Auctioneer.where(:division_id => division_id).each do |auc|
+          score = Scoresheet.new
+          score.auctioneer_id = auc.id
+          score.question_id = question.id
+          score.score = "empty"
+          if !score.save()
+            return false
+          end
         end
       end
       return true
