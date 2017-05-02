@@ -15,7 +15,7 @@ Scenario: access an admin account and sign out successfully
   And  I fill in "Email" with "danguria@gmail.com"
   And  I fill in "Password" with "123456789"
   And  I press "Log In"
-  Then I should be on the main page
+  Then I should be on the admin page
   And  I should see "Sungkeun Kim"
   And  I follow "Log Out"
   Then I should be on the login page
@@ -26,7 +26,7 @@ Scenario: access a judge account and sign out successfully
   And  I fill in "Email" with "tjeon90@gmail.com"
   And  I fill in "Password" with "1234567"
   And  I press "Log In"
-  Then I should be on the main page
+  Then I should be on the judge page
   And  I should see "Tae Jun Jeon"
   And  I follow "Log Out"
   Then I should be on the login page
