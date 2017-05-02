@@ -51,7 +51,8 @@
 
 <div id='scoresheet'>
 <% qidx = 1 %>
-<%= form_for :judges, :url =>  judge_path(current_user), :html => { :method => :put }  do %>
+<%= form_for :judges, :url =>  judge_path(current_user), :html => { :method => :put }  do |f| %>
+  <%= f.hidden_field  :auc_id, :value => @auc.id %>
   <%#= render 'shared/errors', object: @scores%>
   <% @scores.each do |score| %>
   <% @qs.each do |q| %>

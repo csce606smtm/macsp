@@ -3,6 +3,7 @@ class CreateScoresheets < ActiveRecord::Migration
     create_table :scoresheets do |t|
       t.references :auctioneer, foreign_key: true, null:false
       t.references :question, foreign_key: true, null:false
+      t.references :judge, foreign_key:true, null:false
       t.string :score
       t.timestamps null: false
     end

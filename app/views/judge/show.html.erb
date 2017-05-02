@@ -9,7 +9,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Judge</th>
+        <th>Status</th>
       </tr>
     </thead>
     
@@ -17,7 +17,11 @@
       <% @users.each do |user| %>
           <tr>
             <td><%= user[:name] %></td>
-            <td> <%= link_to 'Go to judge page', edit_judge_path(:id => user[:auc_id]) %> </td>
+            <%if user[:done] == "false" %>
+              <td> <%= link_to 'Go to judge page', edit_judge_path(:id => user[:auc_id]) %> </td>
+            <%else %>
+              <td> Judged </td>
+            <%end%>
           </tr>
       <% end %>
     </tbody>

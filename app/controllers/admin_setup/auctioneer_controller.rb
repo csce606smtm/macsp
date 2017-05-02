@@ -10,7 +10,7 @@ class AdminSetup::AuctioneerController < ApplicationController
         @user_all = User.all
         @contest_all = Contest.all
         @division_all = Division.all
-        @auctioneer_all = Auctioneer.all
+        @auctioneer_all = Auctioneer.select(:division_id, :user_id).uniq
         
         @aList = []
         
@@ -58,14 +58,19 @@ class AdminSetup::AuctioneerController < ApplicationController
         @user.bare_password = "auctioneer_default"
         @user.user_type = "Auctioneer"
         
-        @new_auctioneer = Auctioneer.new
-        
         if @user.save
             flash[:success] = 'Successfully created a Auctioneer'
             
-            @new_auctioneer.user_id = @user.id
-            @new_auctioneer.division_id = params[:division][:division_name]
-            @new_auctioneer.save
+            puts "danguria div id #{params[:division][:division_name]}"
+            div = Division.find_by(:id => params[:division][:division_name])
+            Judge.where(:contest_id => div.contest_id).each do |judge|
+                new_auc = Auctioneer.new
+                new_auc.user_id = @user.id
+                new_auc.division_id = div.id
+                new_auc.judge_id = judge.id
+                new_auc.done = "false"
+                new_auc.save
+            end
         else
             flash[:success] = 'Failed to created a Auctioneer'
         end

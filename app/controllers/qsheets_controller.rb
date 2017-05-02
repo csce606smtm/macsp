@@ -116,6 +116,7 @@ class QsheetsController < ApplicationController
           score = Scoresheet.new
           score.auctioneer_id = auc.id
           score.question_id = question.id
+          score.judge_id = auc.judge_id
           score.score = "empty"
           if !score.save()
             return false
