@@ -24,6 +24,8 @@ Scenario: create a judge account
   And  I fill in "Email" with "sdhpekr@gmail.com"
   And  I fill in "Password" with "1231"
   And  I fill in "Password confirmation" with "1231"
-  And  I select "Lonestar" from "contest[contest_name]"
   And  I press "Register Judge"
+  
+  And I follow first "Delete"
+  
   Then I should be on the new judge page
