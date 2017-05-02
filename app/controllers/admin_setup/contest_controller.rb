@@ -27,7 +27,7 @@ class AdminSetup::ContestController < ApplicationController
               did_list = Division.joins(:auctioneers).pluck_to_hash(:contest_id, :user_id, :division_id) 
               
               did_list.each do |did|
-                if (did[:contest_id] == contest.id)
+                if (did[:division_id] == division.id)
                   cnt_a = cnt_a + 1
                 end
               end

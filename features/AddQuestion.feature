@@ -31,13 +31,10 @@ Scenario: create a question
   And  I press "DONE"
   
   And  I follow first "Delete"
-  And  I press "OK"
   
   And  I follow "+ Add New Questions"
   And  I press "+ Add question"
-  And  I fill in "Question Type" with "S"
+  And  I fill in first with "S"
   And  I press "DONE"
   
-  And  I follow "Log Out"
-  
-  Then I should be on the log in page
+  Then I should see "Qsheet was successfully updated."
