@@ -66,8 +66,8 @@ class AdminSetup::JudgeController < ApplicationController
         @judge = User.find params[:id]
         @new_judge = Judge.find_by(user_id: @judge.id)
         
-        @judge.destroy
         @new_judge.destroy
+        @judge.destroy
         
         flash[:notice] = "Judge #{@judge.name} deleted"
         redirect_to new_admin_setup_judge_path
