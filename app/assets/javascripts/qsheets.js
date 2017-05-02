@@ -64,5 +64,5 @@ function addQuestionField() {
     document.getElementById("myList").appendChild(divContent);
  
     //show address header
-    $("#questionHeader").show(); 
+    //$("#questionHeader").show(); 
 }
