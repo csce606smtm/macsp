@@ -89,7 +89,6 @@ class AdminSetup::ContestController < ApplicationController
         @temp_contest_id = @division.contest_id
         @temp_division_id = @division.id
         
-        @division.destroy
         #@new_judge.destroy
         
         @temp = Division.find_by(contest_id: @temp_contest_id)
@@ -110,6 +109,7 @@ class AdminSetup::ContestController < ApplicationController
         if @temp_qsheet != nil
           @temp_qsheet.destroy
         end
+        @division.destroy
         
         flash[:notice] = "Division #{@division.division_name} deleted"
         redirect_to new_admin_setup_contest_path
