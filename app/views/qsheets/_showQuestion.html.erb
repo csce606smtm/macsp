@@ -17,7 +17,7 @@
             <td><%= @counter += 1 %></td>
             <td><%= @currQuestion.dataType%></td>
             <td><%= @currQuestion.content %></td>
-            <td><%= link_to 'Delete', qsheet_path(:id => id), data: {:confirm => 'Are you sure?' + id.to_s}, :method => :delete %></td>
+            <td><%= link_to 'Delete', qsheet_path(:id => id), :method => :delete %></td>
         </tr>
     <% end %> 
     </tbody>
