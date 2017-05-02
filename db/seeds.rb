@@ -155,14 +155,6 @@ qsheets = [
   :auctioneer_id => 1,
   :question_id => 1,
   :score => "empty"},
-  {:id => 2,
-  :auctioneer_id => 2,
-  :question_id => 2,
-  :score => "empty"},
-  {:id => 3,
-  :auctioneer_id => 3,
-  :question_id => 4,
-  :score => "empty"},
   ]
   
   
