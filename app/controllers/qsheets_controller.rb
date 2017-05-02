@@ -64,13 +64,12 @@ class QsheetsController < ApplicationController
   def update
     @qsheet = Qsheet.find_by(:division_id => params[:id])
     respond_to do |format|
-      if save_questions(params[:qsheet][:questions_attributes], @qsheet.division_id)
-        format.html { redirect_to @qsheet, notice: 'Qsheet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @qsheet }
-      else
-        format.html { render :edit }
-        format.json { render json: @qsheet.errors, status: :unprocessable_entity }
+      if params[:qsheet] != nil
+        save_questions(params[:qsheet][:questions_attributes], @qsheet.division_id)
       end
+      
+      format.html { redirect_to @qsheet, notice: 'Qsheet was successfully updated.' }
+      format.json { render :show, status: :ok, location: @qsheet }
     end
   end
 
@@ -101,6 +100,9 @@ class QsheetsController < ApplicationController
     end
 
     def save_questions(qs, division_id)
+      if qs == nil
+        return false
+      end
       qs.each do |q|
         question = Question.new
         question.dataType = q[1][:dataType]
