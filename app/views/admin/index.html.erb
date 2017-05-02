@@ -1,102 +1,48 @@
+<script>
+  document.getElementById('admin-nav').className = "active"; 
+</script>
 <div class="container">
-<h1>Select a contest!</h1>
-<div style="right:-240px;"> <h5>(If no contest yet exists head over to the setup tab and create one!)</h5> </div>
-
-<div class="row">
-    <div class="col-xs-6 col-sm-3">
-        <a class="btn btn-primary btn-select">
-            <input type="hidden" class="btn-select-input" id="" name="" value="" />
-            <span class="btn-select-value">Select an Item</span>
-            <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-            <ul>
-                <li class="selected">Lonestar Auction 2017</li>
-                <li>Texas Auctioneers 2017</li>
-                <li>Auction Extradonaire Winter Special</li>
-            </ul>
-        </a>
-    </div>
+  <% @contests.each do |contest| %>
+    <h2>Results for: 
+      <%= contest.contest_name%>
+    </h2>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-inverse">
+            <th>Division</th>
+            <th>Round</th>
+            <th>Name</th>
+            <th>Score</th>
+            <th>View Results</th>
+        </thead>
+        <tbody>
+          <% Division.where(contest_id: contest.id).each do |div| %>
+              <% @aucList = Auctioneer.where(division_id: div.id) %>
+              <% if @aucList.length > 0 %>
+                  <% @aucList.each do |auc| %> 
+                      <tr>
+                        <td><%= div.division_name %></td>
+                        <td><%= div.round %></td>
+                        <td><%= User.find(auc.user_id).name %></td>
+                        <td><%= @aucAvgScore[auc.id] %></td>
+                        <td><%= link_to 'Results', admin_scoreSummary_path(:auc_id => auc.id, :contest_name => contest.contest_name, :division_name => div.division_name), target: :_blank %></td>
+                      </tr>
+                  <% end %> 
+              <% else %>
+                  <tr>
+                    <td><%= div.division_name %></td>
+                    <td><%= div.round %></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+              <% end %> 
+          <% end %> 
+          </table>
+          <br>
+  <% end %>
+  
 </div>
 
-<div class="container">
-  <h2 id="resultsTitle">Realtime Results</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-          <th>Divison</th>
-        <th>Auctioneer Name</th>
-        <th>Current Average Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>State Champion</td>
-        <td>Mark Caate</td>
-        <td>8.4</td>
-      </tr>
-      <tr>
-        <td>State Champion</td>
-        <td>Will Ferrell</td>
-        <td>6.7</td>
-      </tr>
-      <tr>
-        <td>State Champion</td>
-        <td>Billy Jay</td>
-        <td>5.5</td>
-      </tr>
-      <!--This was an easy fix for the seperator row. When building say something like "if lastDivision != currentDivision insert blank blank blank-->
-              <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-        <tr>
-        <td>Rookie</td>
-        <td>Aaron Perrine</td>
-        <td>9.6</td>
-      </tr>
-      
-      <tr>
-        <td>Rookie</td>
-        <td>Hannah Fowler</td>
-        <td>9.6</td>
-      </tr>
-      <tr>
-        <td>Rookie</td>
-        <td>Donald Trump</td>
-        <td>0.2</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="container" id="questionContainer">
-  <h2 id="judgeTitle">Judges</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Judge Name</th>
-        <th>Judge Email</th>
-        <th>Judge status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Avery Kelos</td>
-        <td>averyyyy@gmail.com</td>
-        <td>Judged</td>
-      </tr>
-      <tr>
-        <td>Popi Junte</td>
-        <td>ppooppi@yahoo.com</td>
-        <td>Not judged</td>
-      </tr>
-      <tr>
-        <td>Kurt Vone</td>
-        <td>isthisanemail@gmail.com</td>
-        <td>Not judged</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
 <script>
 

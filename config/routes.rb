@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   get 'admin_auctioneer' => 'admin#auctioneer'
   get 'admin_contest' => 'admin#contest'
   
-  resources :admin, only: [:index, :judge, :auctioneer, :contest, :new, :create]
+  resources :admin, only: [:index, :judge, :auctioneer, :contest, :new, :create, :scoreSummary]
   resources :judge, only: [:index, :edit, :update, :show]
   # resources :qsheets, only: [:index, :edit, :new, :show, :destroy]
 
   get 'judge_score' => 'judge#score'
+  get 'admin_scoreSummary' => 'admin#scoreSummary'
   
   get 'qsheets_show' => 'qsheets#show'
 

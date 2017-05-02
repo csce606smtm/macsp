@@ -38,8 +38,9 @@
       </label>
       <div class="col-sm-10">
           <%= fields_for @division do |division| %>
-            <%= division.collection_select :division_name, Division.all, :id, :division_name, include_blank: false %> 
+            <%= division.collection_select :division_name, Division.all, :id, :name_with_round, include_blank: false %> 
           <% end %>
+      </div>
       </div>
     </div>
     
