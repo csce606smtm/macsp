@@ -55,14 +55,29 @@ class JudgeController < ApplicationController
 
     def update
       puts "danguria #{params[:judges][:auc_id]}"
-      auc = Auctioneer.find_by(:id => params[:judges][:auc_id])
-      auc.done = "true"
-      auc.save
+      done = true
       params['output'].keys.each do |id|
         score = Scoresheet.find_by(:id => id.to_i)
         puts "id; #{id}"
         score.score = params['output'][id][:score]
+        q = Question.find_by(:id => score.question_id)
+        if (score.score == "empty")
+           done = false 
+        end
+        if (q.dataType == "I")
+          if score.score.is_a? Fixnum
+              puts "this is not fixnum"
+              done = false
+          else
+              puts "this is fixnum"
+          end
+        end
         score.save()
+      end
+      if done
+        auc = Auctioneer.find_by(:id => params[:judges][:auc_id])
+        auc.done = "true"
+        auc.save
       end
 
       redirect_to judge_index_path
