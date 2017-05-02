@@ -23,8 +23,8 @@ Background: users in database
   | 5555555        | 99999999   | 99999999  |
   
   Given the following auctioneers exist:
-  | user_id        | division_id | id        |
-  | 7777777        | 99999999    | 99999999  |
+  | user_id        | division_id | id        | done       | judge_id  |
+  | 7777777        | 99999999    | 99999999  | false      | 99999999  |
 
   Given the following qsheets exist:
   | division_id       | id        |
@@ -33,10 +33,10 @@ Background: users in database
   Given the following questions exist:
   | qsheet_id     | dataType    | content     | id         |
   | 99999999      | I           | Hello?      | 99999999   |
-
+  
   Given the following scoresheets exist:
-  | auctioneer_id     | question_id    |
-  | 99999999          | 99999999       |
+  | auctioneer_id | judge_id    | id         | question_id  |
+  | 99999999      | 99999999    | 99999999   | 99999999     |
 
 Scenario: judge someone
   Given I am on the login page
@@ -48,5 +48,4 @@ Scenario: judge someone
   And  I follow first "Go to judge page"
   And  I fill in first with "6"
   And  I press "Submit"
-  
   Then I should see "Judge Page"

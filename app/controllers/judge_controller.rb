@@ -48,8 +48,7 @@ class JudgeController < ApplicationController
 
        @scores = []
        @qs.each do |q|
-        @scores << Scoresheet.where(
-            :auctioneer_id => @auc.id, :question_id => q.id, :judge_id => @judge.id)
+        @scores << Scoresheet.where(:auctioneer_id => @auc.id, :question_id => q.id, :judge_id => @judge.id)
        end
     end
 

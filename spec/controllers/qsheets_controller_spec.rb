@@ -52,12 +52,12 @@ RSpec.describe QsheetsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new qsheet as @qsheet" do
-      get :new, {}, valid_session
-      expect(assigns(:qsheet)).to be_a_new(Qsheet)
-    end
-  end
+  # describe "GET #new" do
+  #   it "assigns a new qsheet as @qsheet" do
+  #     get :new, {}, valid_session
+  #     expect(assigns(:qsheet)).to be_a_new(Qsheet)
+  #   end
+  # end
 
   describe "GET #edit" do
     it "assigns the requested qsheet as @qsheet" do

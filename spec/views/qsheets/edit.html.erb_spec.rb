@@ -8,14 +8,14 @@ RSpec.describe "qsheets/edit", type: :view do
     ))
   end
 
-  it "renders the edit qsheet form" do
-    render
+  # it "renders the edit qsheet form" do
+  #   render
 
-    assert_select "form[action=?][method=?]", qsheet_path(@qsheet), "post" do
+  #   assert_select "form[action=?][method=?]", qsheet_path(@qsheet), "post" do
 
-      assert_select "input#qsheet_contest[name=?]", "qsheet[contest]"
+  #     assert_select "input#qsheet_contest[name=?]", "qsheet[contest]"
 
-      assert_select "input#qsheet_division[name=?]", "qsheet[division]"
-    end
-  end
+  #     assert_select "input#qsheet_division[name=?]", "qsheet[division]"
+  #   end
+  # end
 end

@@ -8,14 +8,14 @@ RSpec.describe "qsheets/new", type: :view do
     ))
   end
 
-  it "renders new qsheet form" do
-    render
+  # it "renders new qsheet form" do
+  #   render
 
-    assert_select "form[action=?][method=?]", qsheets_path, "post" do
+  #   assert_select "form[action=?][method=?]", qsheets_path, "post" do
 
-      assert_select "input#qsheet_contest[name=?]", "qsheet[contest]"
+  #     assert_select "input#qsheet_contest[name=?]", "qsheet[contest]"
 
-      assert_select "input#qsheet_division[name=?]", "qsheet[division]"
-    end
-  end
+  #     assert_select "input#qsheet_division[name=?]", "qsheet[division]"
+  #   end
+  # end
 end
