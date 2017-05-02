@@ -151,7 +151,7 @@ qsheets = [
  
  
  scoresheets = [
-  {:id => 1,
+  {
   :auctioneer_id => 1,
   :question_id => 1,
   :score => "empty"},
