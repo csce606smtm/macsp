@@ -19,7 +19,8 @@ class JudgeController < ApplicationController
     def show
         @division = Division.find_by(:id => params[:id])
         @contest = Contest.find_by(:id => @division.contest_id)
-        @auctioneers = Auctioneer.where(:division_id => params[:id]).uniq
+        @judge = Judge.find_by(:user_id => current_user.id)
+        @auctioneers = Auctioneer.where(:division_id => params[:id], :judge_id => @judge.id).uniq
         @users = []
         User.all.each do |user|
             @auctioneers.each do |auc|
@@ -28,6 +29,7 @@ class JudgeController < ApplicationController
                     u[:name] = user.name
                     u[:auc_id] = auc.id
                     u[:user_id] = user.id
+                    u[:done] = auc.done
                     @users << u
                 end
             end
@@ -42,16 +44,23 @@ class JudgeController < ApplicationController
 
        @qsheet = Qsheet.find_by(:id => @div.id)
        @qs = Question.where(:qsheet_id => @qsheet.id)
+       @judge = Judge.find_by(:user_id => current_user.id)
 
        @scores = []
        @qs.each do |q|
-        @scores << Scoresheet.where(:auctioneer_id => @auc.id, :question_id => q.id)
+        @scores << Scoresheet.where(
+            :auctioneer_id => @auc.id, :question_id => q.id, :judge_id => @judge.id)
        end
     end
 
     def update
+      puts "danguria #{params[:judges][:auc_id]}"
+      auc = Auctioneer.find_by(:id => params[:judges][:auc_id])
+      auc.done = "true"
+      auc.save
       params['output'].keys.each do |id|
         score = Scoresheet.find_by(:id => id.to_i)
+        puts "id; #{id}"
         score.score = params['output'][id][:score]
         score.save()
       end

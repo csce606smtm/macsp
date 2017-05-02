@@ -3,7 +3,8 @@ class CreateAuctioneers < ActiveRecord::Migration
     create_table :auctioneers do |t|
       t.references :user, foreign_key: true
       t.references :division, foreign_key: true
-      
+      t.references :judge, foreign_key: true
+      t.string :done 
       t.timestamps null: false
     end
     
