@@ -410,41 +410,6 @@
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/controllers/admin/result_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "/home/ubuntu/workspace/app/controllers/admin_setup/auctioneer_controller.rb": [
         0,
         0,
@@ -930,7 +895,7 @@
         0
       ]
     },
-    "timestamp": 1493743900
+    "timestamp": 1493749755
   },
   "Cucumber Features": {
     "coverage": {
@@ -1736,41 +1701,6 @@
         0,
         0
       ],
-      "/home/ubuntu/workspace/app/controllers/admin/result_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "/home/ubuntu/workspace/app/controllers/admin_setup/question_controller.rb": [
         0,
         0,
@@ -1863,6 +1793,6 @@
         0
       ]
     },
-    "timestamp": 1493743892
+    "timestamp": 1493749769
   }
 }
