@@ -8,10 +8,12 @@ class SessionsController < ApplicationController
     if login(params[:email], params[:password], params[:remember_me])
       if current_user.user_type == "Admin"
         flash[:success] = 'Welcome! Admin'
+        redirect_to admin_index_path
       elsif current_user.user_type == "Judge"
         flash[:success] = 'Welcome a Judge'
+        redirect_to judge_index_path
       end
-      redirect_to root_path
+      #redirect_to root_path
     else
       flash.now[:warning] = 'E-mail and/or password is incorrect.'
       render 'new'
