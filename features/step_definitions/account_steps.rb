@@ -10,6 +10,42 @@ Given /^the following contests exist:$/ do |data_table|
 	end
 end
 
+Given /^the following divisions exist:$/ do |data_table|
+	data_table.hashes.each do |divisions|
+		Division.create!(divisions)
+	end
+end
+
+Given /^the following qsheets exist:$/ do |data_table|
+	data_table.hashes.each do |qsheets|
+		Qsheet.create!(qsheets)
+	end
+end
+
+Given /^the following questions exist:$/ do |data_table|
+	data_table.hashes.each do |questions|
+		Question.create!(questions)
+	end
+end
+
+Given /^the following judges exist:$/ do |data_table|
+	data_table.hashes.each do |judges|
+		Judge.create!(judges)
+	end
+end
+
+Given /^the following auctioneers exist:$/ do |data_table|
+	data_table.hashes.each do |auctioneers|
+		Auctioneer.create!(auctioneers)
+	end
+end
+
+Given /^the following scoresheets exist:$/ do |data_table|
+	data_table.hashes.each do |scoresheets|
+		Scoresheet.create!(scoresheets)
+	end
+end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
 	visit path_to(page_name)
 end
@@ -23,11 +59,27 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
-	click_link(link)
+	  click_link(link)
+end
+
+When /^(?:|I )follow first "([^"]*)"$/ do |link|
+	  click_link(link, :match => :first)
+end
+
+When /^(?:|I )send "([^"]*)"$/ do |link|
+		find_field('DONE').native.send_key(:enter)
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
 	fill_in(field, :with => value)
+end
+
+When /^(?:|I )fill in first with "([^"]*)"$/ do |value|
+	fill_in(:match => :first, :with => value)
+end
+
+When /^(?:|I )fill in last with "([^"]*)"$/ do |value|
+	fill_in(:match => :last, :with => value)
 end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|

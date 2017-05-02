@@ -18,7 +18,8 @@ Scenario: add an auctioneer
   And  I follow "Auctioneer"
   And  I fill in "Name" with "Auction Doe"
   And  I fill in "Email" with "ebay@gmail.com"
-  And  I fill in "Password" with "1231"
-  And  I fill in "Password confirmation" with "1231"
   And  I press "Add Auctioneer"
+  
+  And  I follow first "Delete"
+  
   Then I should be on the new auctioneer page
