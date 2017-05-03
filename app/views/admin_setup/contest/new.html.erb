@@ -1,3 +1,4 @@
+
 <script>
   document.getElementById("admin-setup-nav").className = "active";
 </script>
@@ -9,7 +10,10 @@
     <li><%= link_to 'Questions', qsheets_path %></li>
 </ul>
 
-<h2>Add New Contest</h2>
+<div class="panel panel-default">
+
+  <div class="panel-heading"><h4>Add New Contest</h4></div>
+  <div class="panel-body">
 <%= form_for @contest, url: {action: "create"}, :html => {:class => 'form-horizontal'} do |contest| %>
 <%= render 'shared/errors', object: @contest %>
     
@@ -53,12 +57,20 @@
         <input type="submit" value='Submit' class="btn btn-primary btn-med">
         <!--<%#= f.submit 'Submit', class: 'btn btn-primary btn-med' %>-->
       </div>
+      
+    <!--end of panel body: -->
     </div>
 <% end %>
 
-<div class="container">
+<!--end of panel: -->
+</div> 
+
+</div>
+
+<hr>
+
   <h2>Current Contests</h2>
-  <table class="table table-striped">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Contest Name</th>
@@ -78,11 +90,16 @@
       <td> <%= list[:round] %></td>
       <td> <%= list[:num_judge] %></td>
       <td> <%= list[:num_auctioneer] %></td>
-      <td> <%= link_to 'Delete', admin_setup_contest_path(list), :method => :delete %> </td>
+      <td>
+          <%=  link_to admin_setup_contest_path(list), :method => :delete do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 
+          <% end %> 
+        </td>
      </tr>
     <% end %>
     </tbody>
   </table>
-</div>
+  
+
 
   

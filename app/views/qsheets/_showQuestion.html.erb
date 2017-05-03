@@ -1,10 +1,21 @@
 <% @counter = 0 %>
 <% @questionIDArray = Question.where(qsheet_id: @qsheet.id).pluck(:id) %>
 <table class="table table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th colspan="4">
+                <% @corrDivision = Division.find(@qsheet.division_id) %>
+                  <%= @corrContest = Contest.find(@corrDivision.contest_id).contest_name %> Questions
+                  <br>
+                  Division: <%= @corrDivision.division_name %>, Round 
+                  <%= @corrDivision.round %>
+            </th>
+        </tr>
+    </thead>
     <thead>
         <tr>
             <th>Number</th>
-            <th>Integer or String?</th>
+            <th>Integer (I) or String (S)?</th>
             <th>Question</th>
             <th>Delete</th>
         </tr>

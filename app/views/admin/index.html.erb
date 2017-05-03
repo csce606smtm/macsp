@@ -1,8 +1,9 @@
 <script>
   document.getElementById('admin-nav').className = "active"; 
 </script>
-<div class="container">
-  <% @contests.each do |contest| %>
+<p><%= @allAucList %></p>
+
+<% @contests.each do |contest| %>
     <h2>Results for: 
       <%= contest.contest_name%>
     </h2>
@@ -14,34 +15,42 @@
             <th>Score</th>
             <th>View Results</th>
         </thead>
+        
         <tbody>
-          <% Division.where(contest_id: contest.id).each do |div| %>
-              <% @aucList = Auctioneer.where(division_id: div.id) %>
-              <% if @aucList.length > 0 %>
-                  <% @aucList.each do |auc| %> 
-                      <tr>
-                        <td><%= div.division_name %></td>
-                        <td><%= div.round %></td>
-                        <td><%= User.find(auc.user_id).name %></td>
-                        <td><%= @aucAvgScore[auc.id] %></td>
-                        <td><%= link_to 'Results', admin_scoreSummary_path(:auc_id => auc.id, :contest_name => contest.contest_name, :division_name => div.division_name), target: :_blank %></td>
-                      </tr>
-                  <% end %> 
-              <% else %>
-                  <tr>
-                    <td><%= div.division_name %></td>
-                    <td><%= div.round %></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-              <% end %> 
-          <% end %> 
-          </table>
-          <br>
-  <% end %>
+            <% Division.where(contest_id: contest.id).each do |div| %>
+                <% @aucList.each do |auc| %> 
+                    <% tempAuc = Auctioneer.find_by(:user_id => auc.id) %>
+                    <% if tempAuc.division_id == div.id #find auc by div%>
+                        <tr>
+                            <td><%= div.division_name %></td>
+                            <td><%= div.round %></td>
+                            <td><%= auc.name %></td>
+                            <td><%= @aucAvgScore[tempAuc.id].round(1) %></td>
+                            <td>
+                              <%=  link_to admin_scoreSummary_path(:auc_id => tempAuc.id, :avgScore => @aucAvgScore[tempAuc.id], :contest_name => contest.contest_name) do %>See
+                                  <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> 
+                              <% end %> 
+                            </td>
+                        </tr>
+                    <% else %>
+                        <tr>
+                            <td><%= div.division_name %></td>
+                            <td><%= div.round %></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    <% end %> 
+                <% end %> 
+                <tr style="background-color: rgba(179, 204, 230,.25);"> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+            <% end %> 
+        </tbody>
+          
+    </table>
+    <br>
+<% end %>
   
-</div>
+
 
 
 <script>

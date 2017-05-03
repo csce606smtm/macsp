@@ -2,14 +2,19 @@
     document.getElementById("judge-nav").className = "active";
 </script>
 
+<%= link_to(judge_index_path, :html => {:class => 'btn btn-default btn-med'}) do %>
+<span class='glyphicon glyphicon-arrow-left'></span>
+ Back to My Auctioneers
+<% end %>
+
   <h2> Auctioneers of <%= @contest.contest_name%> Contest </h2>
   <h3> Division: <%= @division.division_name %></h3>
   <h3> Round: <%= @division.round %></h3>
-  <table class="table table-striped">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Status</th>
+        <th class="col-xs-6 col-sm-4">Name</th>
+        <th class="col-xs-6 col-sm-4">Status</th>
       </tr>
     </thead>
     
@@ -18,7 +23,7 @@
           <tr>
             <td><%= user[:name] %></td>
             <%if user[:done] == "false" %>
-              <td> <%= link_to 'Go to judge page', edit_judge_path(:id => user[:auc_id]) %> </td>
+              <td> <%= link_to 'Score this auctioneer', edit_judge_path(:id => user[:auc_id]) %> </td>
             <%else %>
               <td> Judged </td>
             <%end%>

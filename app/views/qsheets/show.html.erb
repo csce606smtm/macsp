@@ -12,17 +12,10 @@
 
 <%= link_to '< Back to QSheets', qsheets_path %>
 
-<h2><small>Viewing QSheet for </small>
-  <%= @qsheet.id %>
-  <% @corrDivision = Division.find(@qsheet.division_id) %>
-  <%= @corrContest = Contest.find(@corrDivision.contest_id).contest_name %>
-  <%= @corrDivision.division_name %>
-  Round 
-  <%= @corrDivision.round %>
-    <button class="btn btn-link btn-med">
-      <%= link_to '+ Add New Questions', edit_qsheet_path(:id => @qsheet.division_id) %>
-    </button>
-</h2>
 <%= render 'showQuestion' %>
+
+<button class="btn btn-default btn-med pull-right">
+  <%= link_to '+ Add New Questions', edit_qsheet_path(:id => @qsheet.division_id) %>
+</button>
 
 

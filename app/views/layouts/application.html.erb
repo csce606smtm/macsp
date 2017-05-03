@@ -21,7 +21,7 @@
              <li id="admin-nav"><%= link_to 'Admin Page', admin_index_path %></li>
              <li id="admin-setup-nav"><%= link_to 'Setup', admin_setup_path %></li>
            <% else %>
-             <li><%= link_to 'Judge Page', judge_index_path %></li>
+             <li id="judge-nav"><%= link_to 'Judge Page', judge_index_path %></li>
            <% end %> 
         <% else %>
           <li><%= link_to 'Log In', log_in_path %></li>
@@ -29,7 +29,7 @@
       </ul>
       <% if current_user %>
         <ul class="nav navbar-nav pull-right">
-          <li><span><%= current_user.name %></span></li>
+          <li><span><%=  current_user.name %></span></li>
           <li><%= link_to 'Log Out', log_out_path, method: :delete %></li>
         </ul>
       <% end %>

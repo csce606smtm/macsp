@@ -9,38 +9,35 @@
     <li><%= link_to 'Questions', qsheets_path %></li>
 </ul>
 
-<h2>Add Auctioneer</h2>
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Add Auctioneer</h4></div>
+
+<div class="panel-body">
 
   <%= form_for @user, url: {action: "create"}, :html => {:class => 'form-horizontal'} do |f| %>
 
   <%= render 'shared/errors', object: @user %>
     
     <div class="form-group">
-      <label class="control-label col-sm-2">
-        <%= f.label :name %>
-      </label>
+      <%= f.label :name, class: "control-label col-sm-2" %>
       <div class="col-sm-10">
         <%= f.text_field :name, class: 'form-control', placeholder: 'Enter full name', required: true %>
       </div>
     </div>
   
     <div class="form-group">
-      <label class="control-label col-sm-2">
-        <%= f.label :email %>
-      </label>
+      <%= f.label :email, class: "control-label col-sm-2" %>
       <div class="col-sm-10">
         <%= f.email_field :email, class: 'form-control', placeholder: 'Enter email', required: true %>
       </div>
     </div>
     
     <div class="form-group">  
-      <label class="control-label col-sm-2"> Division
-      </label>
+      <label class="control-label col-sm-2">Division</label>
       <div class="col-sm-10">
           <%= fields_for @division do |division| %>
             <%= division.collection_select :division_name, Division.all, :id, :name_with_round, include_blank: false %> 
           <% end %>
-      </div>
       </div>
     </div>
     
@@ -51,16 +48,18 @@
     </div>
     
   <% end %>
+  </div>
+  </div>
+  
+  <hr>
 
-
-<div class="container">
-  <h2>Current Auctioneer</h2>
-  <table class="table table-striped">
+  <h2>Current Auctioneers</h2>
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Name</th>
         <th>Email</th>
-        <th>Contest</th>
+        <th>Contest, Division + Round</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -70,11 +69,13 @@
       <tr>
         <td><%= value[:name] %></td>
         <td><%= value[:email] %></td>
-        <td><%= value[:contest_name] %> <%= value[:division_name] %> <%= value[:round] %></td>
-        <td><%=  link_to 'Delete', admin_setup_auctioneer_path(value), :method => :delete %></td>
-
+        <td><%= value[:contest_name] %>, <%= value[:division_name] %> <%= value[:round] %></td>
+        <td>
+          <%=  link_to admin_setup_auctioneer_path(value), :method => :delete do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 
+          <% end %> 
+        </td>
       </tr>
       <% end %>
     </tbody>
   </table>
-</div>

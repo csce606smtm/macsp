@@ -31,6 +31,15 @@ footer {
     margin-top: -100px; /* height of footer */
 }
 
+.thead-inverse th {
+    color: #fff;
+    background-color: #292b2c;
+}
+
+.table {
+    margin-top: 25px;
+}
+
 .nav.nav-tabs {
     margin-bottom : 20px; 
 }
@@ -243,4 +252,8 @@ footer {
 .btn-select.btn-select-light .btn-select-value {
     background-color: white;
     color: black;
+}
+
+.blankTableRow{
+    background-color: red;
 }

@@ -8,5 +8,25 @@
     <li><%= link_to 'Auctioneer', new_admin_setup_auctioneer_path %></li>
     <li><%= link_to 'Questions', qsheets_path %></li>
 </ul>
-
-<h2>Select a tab to edit</h2>
+<div class="container">
+  <h2>Instructions for Site</h2>
+    <h3>Creating a Contest: </h3>
+    <p>
+    When setting up a new tournament the first step is to create the Contest.
+    Above there is a tab labeled 'Contest', this links to the contest setup page.
+    This page allows for a new contest to be created, or an old contest to be deleted.
+    Enter in the contest name then the division, <strong>i.e Contest Name: LoneStar 2017 Divisons: Veteran:3, Rookie:2. </strong> will create a Contest of name LoneStar 2017 and 3 Veteran divisions (1,2,3) and 2 Rookie divisions (1,2).
+    </p>
+      <h3>Creating the Judges: </h3>
+    <p>
+    Now that the contest is created you can add the judges. Start by clicking the Judge tab above. By selecting the contest in the dropdown menu it is possible to change which contest the judge will be added to. It is assumed all judges will score all contestants.If a judge will be scoring another contest in the future it is possible to reassign the current judges to different contests by using the dropdown bar located within the table at the bottom of this page.
+    </p>
+          <h3>Creating the Auctioneers: </h3>
+    <p>
+    Now that the judges are created you can start adding Auctioneer contestants. Start by clicking the Auctioneer tab above. Fill out the name / email then select the correct division and round. Auctioneers previously created can also be deleted from the table below.
+    </p>
+          <h3>Creating the Questions: </h3>
+    <p>
+      To create a new question sheet first select the Questions tab above. The current contests split by their divisions will be listed below. By clicking 'Show' the question sheet for the particular divsion / round is displayed. Here there is the option to delete old questions or create new ones. When creating a question there is field for selecting the type of the question. If the question is meant hold a score from 0-10.0 then the correct type would be 'int'. If the question area is meant to hold comments or categorical data select the 'string' type. 
+    </p>
+</div>

@@ -77,6 +77,7 @@ class JudgeController < ApplicationController
         auc = Auctioneer.find_by(:id => params[:judges][:auc_id])
         auc.done = "true"
         auc.save
+        flash[:success] = 'Auctioneer Judged Successfully'
       end
 
       redirect_to judge_index_path

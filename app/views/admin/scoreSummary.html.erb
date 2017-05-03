@@ -1,14 +1,53 @@
-<h2>Viewing Results for <%= @auctioneerName %></h2>
-         
-        <%= @auctioneerId %> 
-        <%= @contestName %> 
-        <%= @auctioneerName %> 
-        <%= @auc %>
-        <%= @user %> 
-        <%= @div %> 
-        <%= @contest %> 
-        <%= @qsheet %> 
-        <%= @qs %> 
-        <%= @judge %> 
-        <%= @scoresHash %>
+<%= link_to admin_index_path do %>
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    Back to Results
+<% end %> 
+
+<h1>Results for <%= @aucName %></h1>
+<h3>
+  Tournament: <%= @contestName %> 
+</h3>
+<h3>
+  Division: <%= @divName %> 
+</h3>
+ <h3>
+  Round: <%= @divRound %> 
+</h3>
+ <h3>
+  Average Score: <%= @averageScore %>
+</h3>
+<br/>
+<% @judgeHash.each do |key, lol_quad| %>
+    <% @dataRow = 0 %>
+    <table class="table table-bordered">
+        <thead class="thead-inverse">
+            <tr>
+                <th colspan="4">
+                    Scoresheet # <%= @scoresheetN += 1 %>  <br/>
+                    Judged by: <%= lol_quad[ @scoresheetN-1][2] %>
+                </th>
+            </tr>
+        </thead>
+      <thead>
+        <tr>
+              <th>#</th>
+              <th>Question</th>
+              <th>Score</th>
+              <th>Submitted</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% lol_quad.each do |quad| %>
+            <tr>
+              <th scope="row"><%= @dataRow += 1 %></th>
+              <td> <%= quad[0] %> </td>
+              <td> <%= quad[1] %> </td>
+              <td> <%= quad[3] %> </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+        
+        
         
