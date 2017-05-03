@@ -12,7 +12,13 @@
 <nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
-      <%= link_to 'Texas Auctioneer Association', admin_index_path, class: 'navbar-brand' %>
+        <% if current_user %>
+           <% if current_user.user_type == 'Admin' %>
+            <%= link_to 'Texas Auctioneer Association', admin_index_path, class: 'navbar-brand' %>
+           <% else %>
+            <%= link_to 'Texas Auctioneer Association', judge_index_path, class: 'navbar-brand' %>
+           <% end %>
+        <% end %>
     </div>
     <div id="navbar">
       <ul class="nav navbar-nav">
