@@ -91,7 +91,7 @@
       <td> <%= list[:num_judge] %></td>
       <td> <%= list[:num_auctioneer] %></td>
       <td>
-          <%=  link_to admin_setup_contest_path(list), :method => :delete do %>
+          <%=  link_to admin_setup_contest_path(list), id: "Delete", :method => :delete do %>
               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 
           <% end %> 
         </td>

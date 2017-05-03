@@ -24,7 +24,7 @@ Scenario: create a question
   And  I press "Submit"
   
   And  I follow "Questions"
-  And  I follow first "Show"
+  And  I follow first "View questions"
   And  I follow "+ Add New Questions"
   And  I press "+ Add question"
   And  I fill in first with "I"
