@@ -104,22 +104,24 @@ class QsheetsController < ApplicationController
         return false
       end
       qs.each do |q|
-        question = Question.new
-        question.dataType = q[1][:dataType]
-        question.content = q[1][:content]
-        question.qsheet_id= Qsheet.find_by(:division_id => division_id).id
-        if !question.save()
-          return false
-        end
-
-        Auctioneer.where(:division_id => division_id).each do |auc|
-          score = Scoresheet.new
-          score.auctioneer_id = auc.id
-          score.question_id = question.id
-          score.judge_id = auc.judge_id
-          score.score = "empty"
-          if !score.save()
+        if q[1][:dataType] == "I" || q[1][:dataType] == "S"
+          question = Question.new
+          question.dataType = q[1][:dataType]
+          question.content = q[1][:content]
+          question.qsheet_id= Qsheet.find_by(:division_id => division_id).id
+          if !question.save()
             return false
+          end
+  
+          Auctioneer.where(:division_id => division_id).each do |auc|
+            score = Scoresheet.new
+            score.auctioneer_id = auc.id
+            score.question_id = question.id
+            score.judge_id = auc.judge_id
+            score.score = "empty"
+            if !score.save()
+              return false
+            end
           end
         end
       end
