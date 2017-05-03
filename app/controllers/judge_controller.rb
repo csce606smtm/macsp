@@ -60,7 +60,8 @@ class JudgeController < ApplicationController
         puts "id; #{id}"
         score.score = params['output'][id][:score]
         q = Question.find_by(:id => score.question_id)
-        if (score.score == "empty")
+        if (score.score == "empty" || score.score == "0")
+            puts "scoring is not finished"
            done = false 
         end
         if (q.dataType == "I")
