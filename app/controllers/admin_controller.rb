@@ -26,7 +26,7 @@ class AdminController < ApplicationController
                     @ssScore = 0
                 else 
                     @ssScore = @ssScore.to_f
-                    @ssScore =  (@ssScore*10).round / 10.0
+                    #@ssScore =  (@ssScore*10).round / 10.0
                     if @aucData_scoresRAW.key?(ss.auctioneer_id)
                         currentN = @aucData_scoresRAW[ss.auctioneer_id][0]
                         currentSum = @aucData_scoresRAW[ss.auctioneer_id][1]
@@ -38,8 +38,8 @@ class AdminController < ApplicationController
                     end
                 end     
                 @aucData_scoresRAW.each do |key, value|
-                    if value[0] != 0
-                        @aucAvgScore[key] = value[1]/value[0]
+                    if value[0] != nil
+                        @aucAvgScore[key] = ((value[1]/value[0]*10)).round / 10.0
                     end
             end
         end
