@@ -59,6 +59,14 @@ class AdminSetup::JudgeController < ApplicationController
         else
             flash[:success] = 'Failed to created a Judge'
         end
+        
+        Auctioneer.all.each do |auc|
+            division = Division.where(:division_id => auc.division_id)
+            if division.contest_id == @new_judge.contest_id
+                auc.judge_id = @new_judge.id
+                auc.save
+            end
+        end
         redirect_to new_admin_setup_judge_path
     end
 
