@@ -25,21 +25,14 @@
                             <td><%= div.division_name %></td>
                             <td><%= div.round %></td>
                             <td><%= auc.name %></td>
-                            <td><%= @aucAvgScore[tempAuc.id].round(1) %></td>
+                            <td><%= @aucAvgScore[tempAuc.id] %></td>
                             <td>
                               <%=  link_to admin_scoreSummary_path(:auc_id => tempAuc.id, :avgScore => @aucAvgScore[tempAuc.id], :contest_name => contest.contest_name) do %>See
                                   <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> 
                               <% end %> 
                             </td>
                         </tr>
-                    <% else %>
-                        <tr>
-                            <td><%= div.division_name %></td>
-                            <td><%= div.round %></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+
                     <% end %> 
                 <% end %> 
                 <tr style="background-color: rgba(179, 204, 230,.25);"> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
