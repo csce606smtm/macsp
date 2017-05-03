@@ -22,9 +22,18 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+    
     when /^the main page$/
       
       root_path
+    
+    when /^the admin page$/
+      
+      admin_index_path
+      
+    when /^the judge page$/
+      
+      judge_index_path
       
     when /^the new auctioneer page$/
       
