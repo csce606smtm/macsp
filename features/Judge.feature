@@ -32,7 +32,7 @@ Background: users in database
   
   Given the following questions exist:
   | qsheet_id     | dataType    | content     | id         |
-  | 99999999      | I           | Hello?      | 99999999   |
+  | 99999999      | S           | Hello?      | 99999999   |
   
   Given the following scoresheets exist:
   | auctioneer_id | judge_id    | id         | question_id  |
@@ -45,7 +45,7 @@ Scenario: judge someone
   And  I press "Log In"
   And  I follow "Judge Page"
   And  I follow first "See Auctioneers"
-  And  I follow first "Go to judge page"
-  And  I fill in first with "6"
+  And  I follow first "Score this auctioneer"
+  And  I fill in first with "He is really good"
   And  I press "Submit"
   Then I should see "Judge Page"

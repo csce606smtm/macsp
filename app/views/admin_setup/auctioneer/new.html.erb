@@ -71,7 +71,7 @@
         <td><%= value[:email] %></td>
         <td><%= value[:contest_name] %>, <%= value[:division_name] %> <%= value[:round] %></td>
         <td>
-          <%=  link_to admin_setup_auctioneer_path(value), :method => :delete do %>
+          <%=  link_to admin_setup_auctioneer_path(value), id: "Delete", :method => :delete do %>
               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 
           <% end %> 
         </td>
